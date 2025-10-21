@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AbdoraX | Façonner l'Avenir du Numérique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* CSS Personnalisé et Poussé pour une Grande Entreprise */
+        :root {
+            --primary-color-start: #3B82F6; /* Bleu */
+            --primary-color-end: #8B5CF6;   /* Violet */
+            --text-color-dark: #111827;
+            --text-color-medium: #4B5563;
+            --text-color-light: #6B7280;
+            --background-light: #F9FAFB;
+            --background-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+        }
+
+        /* --- Interface de Chargement (Preloader) --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--background-light); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.75s ease;
+        }
+        #preloader.hidden { opacity: 0; pointer-events: none; }
+        .spinner {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            border: 5px solid var(--border-color);
+            border-top-color: var(--primary-color-start);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- Fond Dynamique et Subtil --- */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+        }
+        body {
+            font-family: 'Inter', sans-serif; background-color: var(--background-light);
+            color: var(--text-color-medium);
+            background-image: linear-gradient(-45deg, #f0faff, #f9fafb, #f5f3ff, #f9fafb);
+            background-size: 400% 400%; animation: gradient-animation 20s ease infinite;
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+        .body-loading { overflow: hidden; }
+
+        /* --- Barre de Navigation Avancée --- */
+        .main-header {
+            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .nav-link { position: relative; transition: color 0.3s ease; color: var(--text-color-medium); font-weight: 500; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: -6px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary-color-start), var(--primary-color-end));
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active { color: var(--text-color-dark); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* --- Boutons Haut de Gamme --- */
+        .btn { display: inline-block; font-weight: 600; border-radius: 8px; padding: 14px 28px; transition: all 0.3s ease; text-align: center; }
+        .btn-primary {
+            color: white; background-image: linear-gradient(90deg, var(--primary-color-start), var(--primary-color-end));
+            background-size: 200% auto; box-shadow: 0 4px 20px 0 rgba(139, 92, 246, 0.35);
+        }
+        .btn-primary:hover { background-position: right center; transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.4); }
+        .btn-secondary { color: var(--text-color-dark); background-color: var(--background-white); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background-color: var(--background-light); color: var(--primary-color-start); border-color: var(--primary-color-start); transform: translateY(-2px); }
+        
+        /* --- Cartes & Contenus Premium --- */
+        .custom-card {
+            background: var(--background-white); border: 1px solid var(--border-color); border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; overflow: hidden;
+        }
+        .custom-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03); border-color: var(--primary-color-start); }
+
+        /* --- Animations d'Entrée au Scroll --- */
+        .reveal-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        /* --- Titres & Typographie --- */
+        .section-title { font-size: 3rem; font-weight: 900; color: var(--text-color-dark); margin-bottom: 1rem; letter-spacing: -0.025em; }
+        .section-subtitle { font-size: 1.25rem; max-width: 700px; margin: 0 auto; color: var(--text-color-light); }
+        .gradient-text { background: linear-gradient(90deg, var(--primary-color-start), var(--primary-color-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .feature-icon {
+            display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary-color-start), var(--primary-color-end)); color: white; margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        /* --- Frise Chronologique (Timeline) --- */
+        .timeline { position: relative; padding: 2rem 0; }
+        .timeline::before {
+            content: ''; position: absolute; top: 0; left: 1.5rem; width: 3px; height: 100%;
+            background: var(--border-color);
+        }
+        .timeline-item { position: relative; padding-left: 5rem; margin-bottom: 3rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; top: 4px; left: calc(1.5rem - 12px); width: 24px; height: 24px;
+            background-color: white; border: 4px solid var(--primary-color-start);
+            border-radius: 50%; z-index: 1;
+        }
+        .timeline-date { font-size: 1.5rem; font-weight: 700; color: var(--primary-color-start); }
+        .timeline-item-title { font-size: 1.25rem; font-weight: 600; color: var(--text-color-dark); margin-top: 0.25rem;}
+        
+        /* --- Cartes d'Événements --- */
+        .event-card { position: relative; overflow: hidden; }
+        .event-tag { position: absolute; top: 1rem; left: 1rem; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 600; font-size: 0.875rem; }
+        
+        /* --- Tableau de Comparaison Concurrentiel --- */
+        .comparison-table { border-collapse: separate; border-spacing: 0 0.5rem; }
+        .comparison-table th, .comparison-table td { padding: 1rem 1.5rem; text-align: center; }
+        .comparison-table th { font-weight: 600; color: var(--text-color-dark); }
+        .comparison-table td:first-child, .comparison-table th:first-child { text-align: left; font-weight: 500; }
+        .comparison-table tr:not(:first-child) { background: white; border-radius: 8px; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); }
+        .comparison-table .checkmark { color: var(--success-color); font-weight: bold; font-size: 1.5rem; }
+        .comparison-table .highlight { background-image: linear-gradient(to right, #dbeafe, #e9d5ff); border: 1px solid var(--primary-color-start); }
+        
+        /* --- Accordéon pour FAQ --- */
+        .faq-item summary { cursor: pointer; font-weight: 600; color: var(--text-color-dark); list-style: none; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        /* --- Section Héro avec Image de Fond Parallax --- */
+        .hero-section {
+            background-image: url('https://placehold.co/1920x1080/0F172A/E2E8F0/png?text=Monde+Numérique+Abstrait'); /* Nouvelle image de fond */
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed; /* Effet parallax */
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.7) 0%, rgba(139, 92, 246, 0.7) 100%);
+            opacity: 0.85; /* Ajuster l'opacité du dégradé pour que l'image de fond soit visible */
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white; /* Texte en blanc pour un meilleur contraste */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+        .hero-content h1 {
+            color: white;
+        }
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body class="antialiased body-loading">
+
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="main-header sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600" data-page="home">AbdoraX</a>
+            <nav id="main-nav" class="hidden md:flex space-x-8">
+                <a href="#" class="nav-link active" data-page="home">Accueil</a>
+                <a href="#" class="nav-link" data-page="products">Produits</a>
+                <a href="#" class="nav-link" data-page="vision">Notre Vision</a>
+                <a href="#" class="nav-link" data-page="about">Entreprise</a>
+                <a href="#" class="nav-link" data-page="events">Événements</a>
+                <a href="#" class="nav-link" data-page="careers">Carrières</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="page-container">
+
+        <div id="page-home" class="page-content">
+            <section class="hero-section text-center py-24 md:py-40 px-6">
+                <div class="hero-content">
+                    <p class="text-lg font-semibold tracking-widest uppercase mb-4 reveal-on-scroll">AbdoraX</p>
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight reveal-on-scroll" style="transition-delay: 0.1s;">Façonner les Mondes Numériques de Demain</h1>
+                    <p class="text-xl max-w-3xl mx-auto mb-10 reveal-on-scroll" style="transition-delay: 0.2s;">AbdoraX, nous transformons des idées audacieuses en technologies révolutionnaires qui définissent l'avenir du jeu, de la création et de l'interaction.</p>
+                    <div class="reveal-on-scroll" style="transition-delay: 0.4s;"><a href="#" class="btn btn-primary" data-page="vision">Découvrir notre vision</a></div>
+                </div>
+            </section>
+            
+            <section class="py-24 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 reveal-on-scroll">
+                        <h2 class="section-title">Notre Performance en Chiffres</h2>
+                        <p class="section-subtitle">Des données transparentes qui illustrent notre croissance, notre impact et nos engagements depuis notre création.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 text-center">
+                        <div class="reveal-on-scroll"><div class="text-4xl md:text-5xl font-bold gradient-text" data-counter="12000000000">0</div><p class="mt-2 font-semibold text-gray-700">Lignes de code écrites</p></div>
+                        <div class="reveal-on-scroll" style="transition-delay: 0.1s;"><div class="text-4xl md:text-5xl font-bold gradient-text" data-counter="50000000">0</div><p class="mt-2 font-semibold text-gray-700">Créations réalisées avec ProCut</p></div>
+                        <div class="reveal-on-scroll" style="transition-delay: 0.2s;"><div class="text-4xl md:text-5xl font-bold gradient-text" data-counter="75000000">0</div><p class="mt-2 font-semibold text-gray-700">Parties jouées sur Traffic Builder</p></div>
+                        <div class="reveal-on-scroll" style="transition-delay: 0.3s;"><div class="text-4xl md:text-5xl font-bold gradient-text" data-counter="250000">0</div><p class="mt-2 font-semibold text-gray-700">Contributeurs Open-Source</p></div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-5 gap-8 items-start mb-16">
+                        <div class="lg:col-span-2 custom-card p-8 reveal-on-scroll">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Bilan Carbone (Annuel)</h3>
+                            <canvas id="carbonFootprintChart"></canvas>
+                        </div>
+                         <div class="lg:col-span-3 custom-card p-8 reveal-on-scroll">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Analyse de Croissance Détaillée (2025)</h3>
+                             <div class="mb-6 border-b border-gray-200">
+                                <nav class="flex -mb-px" id="stats-tabs">
+                                    <button class="tab-btn active py-4 px-6 font-semibold border-b-2 border-purple-500 text-purple-600" data-tab="q1">Premier Trimestre</button>
+                                    <button class="tab-btn py-4 px-6 font-semibold text-gray-500 hover:text-purple-600 hover:border-purple-300 border-b-2 border-transparent" data-tab="q3">Troisième Trimestre</button>
+                                </nav>
+                             </div>
+                             <div id="stats-content">
+                                <div class="tab-content" data-tab-content="q1">
+                                    <p class="text-gray-600 mb-6">Indicateurs clés de Janvier à Mars 2025.</p>
+                                     <div class="space-y-4">
+                                        <div>
+                                            <p class="font-semibold text-gray-800">Acquisition d'utilisateurs</p>
+                                            <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-purple-600 h-4 rounded-full" style="width: 57%;"></div></div>
+                                            <div class="flex justify-between text-sm mt-1"><span>Objectif: 2.5M</span><span class="font-bold">Atteint: 2.1M</span></div>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-gray-800">Engagement (heures/mois)</p>
+                                            <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-blue-600 h-4 rounded-full" style="width: 69%;"></div></div>
+                                            <div class="flex justify-between text-sm mt-1"><span>Objectif: 1.8M</span><span class="font-bold">Atteint: 1.5M</span></div>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-gray-800">Revenus des abonnements</p>
+                                            <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-green-600 h-4 rounded-full" style="width: 62.5%;"></div></div>
+                                            <div class="flex justify-between text-sm mt-1"><span>Objectif: 55M€</span><span class="font-bold">Atteint: 50M€</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content hidden" data-tab-content="q3">
+                                     <p class="text-gray-600 mb-6">Indicateurs clés de Juillet à Septembre 2025. Croissance par rapport au T1.</p>
+                                     <div class="space-y-4">
+                                         <div>
+                                            <div class="flex justify-between items-baseline mb-1"><p class="font-semibold text-gray-800">Acquisition d'utilisateurs</p><p class="font-bold text-green-600 text-lg">+71%</p></div>
+                                            <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-purple-600 h-4 rounded-full" style="width: 98%;"></div></div>
+                                            <div class="flex justify-between text-sm mt-1"><span>Objectif: 3.5M</span><span class="font-bold">Atteint: 3.6M</span></div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between items-baseline mb-1"><p class="font-semibold text-gray-800">Engagement (heures/mois)</p><p class="font-bold text-green-600 text-lg">+47%</p></div>
+                                            <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-blue-600 h-4 rounded-full" style="width: 100%;"></div></div>
+                                            <div class="flex justify-between text-sm mt-1"><span>Objectif: 2.0M</span><span class="font-bold">Atteint: 2.2M</span></div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between items-baseline mb-1"><p class="font-semibold text-gray-800">Revenus des abonnements</p><p class="font-bold text-green-600 text-lg">+60%</p></div>
+                                            <div class="w-full bg-gray-200 rounded-full h-4"><div class="bg-green-600 h-4 rounded-full" style="width: 100%;"></div></div>
+                                            <div class="flex justify-between text-sm mt-1"><span>Objectif: 75M€</span><span class="font-bold">Atteint: 80M€</span></div>
+                                        </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal-on-scroll">
+                       <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Positionnement Concurrentiel</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full comparison-table">
+                                <thead><tr><th>Critère</th><th>Concurrent A (TechGiant)</th><th>Concurrent B (Creative Inc.)</th><th class="highlight">Group-Byabd</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Puissance de l'IA Créative</td><td>Bon</td><td>Moyen</td><td><span class="checkmark">✔</span> Excellent</td></tr>
+                                    <tr><td>Qualité de la Simulation (Jeu)</td><td>Moyen</td><td>Bon</td><td><span class="checkmark">✔</span> Exceptionnel</td></tr>
+                                    <tr><td>Expérience Utilisateur (UX)</td><td>Bon</td><td>Bon</td><td><span class="checkmark">✔</span> Intuitif</td></tr>
+                                    <tr><td>Engagement Communautaire</td><td>Moyen</td><td>Moyen</td><td><span class="checkmark">✔</span> Très Actif</td></tr>
+                                    <tr><td>Contribution Open-Source</td><td>Faible</td><td>Nulle</td><td><span class="checkmark">✔</span> Leader</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-products" class="page-content hidden">
+            <section class="py-24 text-center">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">Notre Écosystème de Produits</h2>
+                    <p class="section-subtitle">Des outils et des expériences conçus pour inspirer, créer et divertir au plus haut niveau.</p>
+                </div>
+            </section>
+            
+            <section class="py-20 bg-white">
+                 <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                    <div class="reveal-on-scroll">
+                        <span class="font-bold text-purple-600">JEU VIDÉO STRATÉGIQUE</span>
+                        <h3 class="text-4xl font-bold text-gray-900 mt-2 mb-4">Traffic Builder</h3>
+                        <p class="mb-6 text-lg">Prenez le contrôle de l'urbanisme et de la logistique dans un monde simulé d'une complexité sans précédent. Optimisez les flux, construisez des infrastructures complexes et regardez vos métropoles prospérer ou s'effondrer.</p>
+                        <div class="grid grid-cols-2 gap-4 text-center mb-8">
+                            <div class="bg-gray-50 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="75000000">0</div><p>Parties jouées</p></div>
+                            <div class="bg-gray-50 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="150000">0</div><p>Mods Communautaires</p></div>
+                             <div class="bg-gray-50 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="98" data-suffix="%">0%</div><p>Éval. positives</p></div>
+                             <div class="bg-gray-50 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="1200000">0</div><p>Joueurs/jour</p></div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Explorer Traffic Builder</a>
+                    </div>
+                    <div class="custom-card p-4 reveal-on-scroll"><img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Traffic+Builder" class="rounded-lg w-full"></div>
+                </div>
+            </section>
+
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Croissance des Joueurs Actifs (Traffic Builder)</h3>
+                    <div class="custom-card p-8 reveal-on-scroll"><canvas id="playerGrowthChart"></canvas></div>
+                </div>
+            </section>
+
+             <section class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                     <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Frise Chronologique des Mises à Jour Majeures</h3>
+                     <div class="timeline" style="left: 0; text-align: left; max-w: 800px; margin: auto;">
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2018</p><h4 class="timeline-item-title">Lancement Initial</h4><p>Le jeu qui a tout commencé, posant les bases de la simulation de trafic la plus avancée.</p></div>
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2020</p><h4 class="timeline-item-title">DLC "After Dark"</h4><p>Introduction du cycle jour/nuit, des zones commerciales spécialisées et des services de taxi.</p></div>
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2022</p><h4 class="timeline-item-title">DLC "Green Cities"</h4><p>Ajout de bâtiments écologiques, de véhicules électriques et de nouvelles politiques environnementales.</p></div>
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2024</p><h4 class="timeline-item-title">DLC "Metropolis"</h4><p>La plus grande extension à ce jour, avec des gratte-ciel, des méga-projets et une économie dynamique.</p></div>
+                    </div>
+                </div>
+             </section>
+
+            <section class="py-20 bg-gray-50">
+                <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                    <div class="custom-card p-4 order-last md:order-first reveal-on-scroll"><img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=ProCut+Suite" class="rounded-lg w-full"></div>
+                    <div class="reveal-on-scroll">
+                        <span class="font-bold text-blue-600">SUITE LOGICIELLE CRÉATIVE</span>
+                        <h3 class="text-4xl font-bold text-gray-900 mt-2 mb-4">ProCut</h3>
+                        <p class="mb-6 text-lg">La solution tout-en-un pour les créateurs les plus exigeants. Montage vidéo 8K, mixage audio avec IA, retouche photo non destructive et motion design intégrés.</p>
+                        <div class="grid grid-cols-2 gap-4 text-center mb-8">
+                            <div class="bg-gray-100 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="50000000">0</div><p>Créations réalisées</p></div>
+                            <div class="bg-gray-100 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="99" data-suffix="%">0%</div><p>Des Studios majeurs</p></div>
+                             <div class="bg-gray-100 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="-80" data-suffix="%">-0%</div><p>Temps de rendu</p></div>
+                             <div class="bg-gray-100 p-4 rounded-lg"><div class="text-2xl font-bold gradient-text" data-counter="200" data-suffix="+">0+</div><p>Outils IA</p></div>
+                        </div>
+                        <a href="#" class="btn btn-primary">Découvrir ProCut</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Impact de ProCut sur la Productivité</h3>
+                    <div class="custom-card p-8 reveal-on-scroll"><canvas id="procutProductivityChart"></canvas></div>
+                </div>
+            </section>
+
+             <section class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                     <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Un Outil pour Chaque Créateur</h3>
+                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Cinéastes</h4>
+                            <p>Gestion des couleurs de niveau cinéma, support des formats RAW et workflows collaboratifs pour les équipes.</p>
+                        </div>
+                        <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Créateurs de contenu</h4>
+                            <p>Modèles de titres, transitions intelligentes et exportation directe vers les plateformes sociales pour un gain de temps maximal.</p>
+                        </div>
+                        <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Musiciens & Podcasteurs</h4>
+                            <p>Mixage audio multipiste, nettoyage de dialogues par IA et intégration de banques de sons professionnelles.</p>
+                        </div>
+                        <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Motion Designers</h4>
+                            <p>Animation par keyframes, tracking 3D et un moteur de particules puissant directement intégrés.</p>
+                        </div>
+                    </div>
+                </div>
+             </section>
+        </div>
+
+        <div id="page-vision" class="page-content hidden">
+            <section class="py-24 text-center"><div class="container mx-auto px-6"><h2 class="section-title">Notre Vision: L'Avenir de l'Interaction</h2><p class="section-subtitle">Nous ne nous contentons pas de suivre les tendances, nous les créons. Notre vision s'articule autour de piliers technologiques qui façonneront la prochaine décennie.</p></div></section>
+            
+            <section class="py-24 bg-white">
+                <div class="container mx-auto px-6 max-w-5xl">
+                    <h3 class="text-3xl font-bold text-gray-900 text-center mb-16">Notre Feuille de Route Stratégique</h3>
+                    <div class="timeline" style="left: 0; text-align: left;">
+                        <div class="timeline-item reveal-on-scroll">
+                            <p class="timeline-date">2026</p>
+                            <h4 class="timeline-item-title">L'IA Symbiotique</h4>
+                            <p class="mb-4">Lancement de ProCut "Nexus", intégrant une IA générative multimodale. L'IA n'est plus un outil mais un partenaire créatif, capable de générer des assets 3D, des bandes sonores et de proposer des montages complexes de manière proactive.</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><strong>Impact:</strong> Réduction du temps de production de 50%, démocratisation de la création de haute volée.</li>
+                                <li><strong>Technologies clés:</strong> Modèles de diffusion latente, transformeurs multimodaux, apprentissage par renforcement.</li>
+                            </ul>
+                        </div>
+                         <div class="timeline-item reveal-on-scroll">
+                            <p class="timeline-date">2027</p>
+                            <h4 class="timeline-item-title">Le Métavers Ouvert & Interopérable</h4>
+                            <p class="mb-4">Déploiement du protocole "Agora", la première brique de notre métavers ouvert. Il permettra l'import natif de créations ProCut et la mise en place d'économies virtuelles décentralisées dans Traffic Builder, basées sur des standards ouverts pour garantir la portabilité des actifs entre les mondes.</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><strong>Impact:</strong> Création d'une économie créative pérenne, fin des "jardins fermés" numériques.</li>
+                                <li><strong>Technologies clés:</strong> Universal Scene Description (USD), blockchain pour la propriété des actifs, protocoles décentralisés.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item reveal-on-scroll">
+                            <p class="timeline-date">2028</p>
+                            <h4 class="timeline-item-title">L'Informatique Spatiale</h4>
+                            <p class="mb-4">Présentation de "Canvas", notre suite logicielle en Réalité Augmentée. Les créateurs pourront manipuler des objets 3D et des timelines de montage directement dans leur espace physique, offrant une immersion et une précision inégalées pour le design et la simulation.</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><strong>Impact:</strong> Fusion du monde numérique et physique, interface homme-machine plus intuitive.</li>
+                                <li><strong>Technologies clés:</strong> SLAM (Simultaneous Localization and Mapping), rendu photoréaliste en temps réel, interfaces gestuelles.</li>
+                            </ul>
+                        </div>
+                         <div class="timeline-item reveal-on-scroll">
+                            <p class="timeline-date">2030</p>
+                            <h4 class="timeline-item-title">Neutralité Carbone et IA Éthique</h4>
+                            <p class="mb-4">Atteinte de notre objectif de neutralité carbone pour toutes nos opérations, y compris le cycle de vie de nos produits. Déploiement d'un framework d'IA éthique en open-source, "Prometheus", pour garantir la transparence, l'équité et le contrôle utilisateur sur les algorithmes.</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1">
+                                <li><strong>Impact:</strong> Leadership en matière de responsabilité sociale et environnementale, confiance accrue des utilisateurs.</li>
+                                <li><strong>Technologies clés:</strong> IA explicable (XAI), calculs de cycle de vie, data centers éco-énergétiques.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-20">
+                <div class="container mx-auto px-6 text-center">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-12">Schéma de l'Écosystème Intégré</h3>
+                    <div class="max-w-4xl mx-auto custom-card p-8 reveal-on-scroll">
+                        <p class="text-center text-gray-600 mb-6">Notre vision est de créer un cycle vertueux où nos produits se nourrissent mutuellement, alimentés par notre technologie de base et nos principes éthiques.</p>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 relative">
+                            <div class="text-center font-bold text-gray-800">
+                                <div class="mb-16">
+                                    <div class="inline-block p-4 bg-purple-100 text-purple-800 rounded-lg">ProCut (Création)</div>
+                                    <span class="font-mono mx-4">&lt;--&gt;</span>
+                                    <div class="inline-block p-4 bg-blue-100 text-blue-800 rounded-lg">Traffic Builder (Simulation)</div>
+                                </div>
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4">
+                                    <svg width="100%" height="100" viewBox="0 0 400 100" preserveAspectRatio="none">
+                                        <path d="M0 50 C 100 -20, 300 -20, 400 50" stroke="#9CA3AF" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                                        <path d="M0 50 C 100 120, 300 120, 400 50" stroke="#9CA3AF" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                                    </svg>
+                                </div>
+                                <div class="mt-16 grid grid-cols-2 gap-4">
+                                    <div class="p-4 bg-green-100 text-green-800 rounded-lg">SimCore (Moteur Open-Source)</div>
+                                    <div class="p-4 bg-yellow-100 text-yellow-800 rounded-lg">Prometheus (IA Éthique)</div>
+                                </div>
+                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-white rounded-full border-2 border-gray-400 font-extrabold gradient-text">Agora</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-about" class="page-content hidden">
+            <section class="py-24 text-center"><h2 class="section-title">Notre Histoire, Notre Mission</h2><p class="section-subtitle">Nés d'une vision audacieuse, nous sommes devenus un leader mondial grâce à notre passion pour l'innovation et l'excellence.</p></section>
+            
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-6 max-w-5xl">
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Les Jalons de Notre Histoire</h3>
+                    <div class="timeline" style="left: 0; text-align: left;">
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2015</p><h4 class="timeline-item-title">Fondation de Group-Byabd</h4><p>Dans un garage, trois amis partagent une ambition : créer le simulateur de trafic le plus réaliste jamais conçu, capable de modéliser des villes entières avec une précision granulaire.</p></div>
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2018</p><h4 class="timeline-item-title">Lancement de Traffic Builder</h4><p>Le jeu devient un succès critique et commercial instantané, loué pour son réalisme et sa profondeur. Il atteint 1 million de joueurs en 6 mois et crée une communauté de modding passionnée.</p></div>
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2021</p><h4 class="timeline-item-title">Acquisition et Lancement de ProCut</h4><p>Nous intégrons une startup prometteuse et lançons ProCut 1.0. Ce logiciel bouscule le marché des outils de création avec son modèle collaboratif en temps réel et son interface intuitive.</p></div>
+                        <div class="timeline-item reveal-on-scroll"><p class="timeline-date">2024</p><h4 class="timeline-item-title">Engagement Open-Source Majeur</h4><p>Libération de "SimCore", notre moteur de simulation physique, sous licence open-source. Cette décision renforce notre lien avec la communauté des développeurs et accélère l'innovation dans le domaine.</p></div>
+                         <div class="timeline-item reveal-on-scroll"><p class="timeline-date">Aujourd'hui</p><h4 class="timeline-item-title">Leader Mondial de l'Interaction Numérique</h4><p>Avec plus de 15 000 employés répartis dans 20 pays, nous continuons à repousser les frontières de l'innovation dans le jeu, la création de contenu et les technologies immersives.</p></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Nos Valeurs Fondamentales</h3>
+                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto text-center">
+                         <div class="reveal-on-scroll p-6"><div class="feature-icon mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M12 9v6"/><path d="m9 12-3-3 3-3"/><path d="m15 12 3-3-3-3"/></svg></div><h4 class="text-xl font-bold text-gray-900 mb-2">Innovation Radicale</h4><p>Nous n'avons pas peur de tout remettre en question pour créer ce qui n'a jamais été fait.</p></div>
+                         <div class="reveal-on-scroll p-6"><div class="feature-icon mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><h4 class="text-xl font-bold text-gray-900 mb-2">Excellence de l'Exécution</h4><p>Nous visons la perfection dans chaque détail, du code à l'expérience utilisateur.</p></div>
+                         <div class="reveal-on-scroll p-6"><div class="feature-icon mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h4 class="text-xl font-bold text-gray-900 mb-2">Communauté d'Abord</h4><p>Nos utilisateurs sont nos partenaires. Nous construisons avec eux, pour eux.</p></div>
+                         <div class="reveal-on-scroll p-6"><div class="feature-icon mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4 class="text-xl font-bold text-gray-900 mb-2">Transparence et Éthique</h4><p>Nous agissons avec intégrité et responsabilité, en rendant nos technologies compréhensibles.</p></div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                     <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Nos Dirigeants</h3>
+                     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                        <div class="text-center reveal-on-scroll">
+                            <img src="https://placehold.co/300x300/E5E7EB/4B5563?text=A.L." class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                            <h4 class="text-xl font-bold text-gray-900">Aria Dubois</h4>
+                            <p class="text-purple-600 font-semibold">Présidente Directrice Générale</p>
+                            <p class="mt-2 text-sm text-gray-600">Co-fondatrice visionnaire, Aria guide la stratégie globale de l'entreprise avec une passion pour l'innovation de rupture.</p>
+                        </div>
+                        <div class="text-center reveal-on-scroll">
+                            <img src="https://placehold.co/300x300/E5E7EB/4B5563?text=L.M." class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                            <h4 class="text-xl font-bold text-gray-900">Léo Marchand</h4>
+                            <p class="text-blue-600 font-semibold">Directeur de la Technologie</p>
+                            <p class="mt-2 text-sm text-gray-600">Architecte de SimCore et pionnier de l'IA, Léo dirige nos équipes de R&D vers la prochaine génération de technologies.</p>
+                        </div>
+                        <div class="text-center reveal-on-scroll">
+                             <img src="https://placehold.co/300x300/E5E7EB/4B5563?text=C.T." class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                            <h4 class="text-xl font-bold text-gray-900">Chloé Tanaka</h4>
+                            <p class="text-green-600 font-semibold">Directrice des Produits</p>
+                            <p class="mt-2 text-sm text-gray-600">Obsédée par l'expérience utilisateur, Chloé s'assure que chaque produit est non seulement puissant, mais aussi intuitif et agréable.</p>
+                        </div>
+                        <div class="text-center reveal-on-scroll">
+                            <img src="https://placehold.co/300x300/E5E7EB/4B5563?text=S.K." class="w-48 h-48 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                            <h4 class="text-xl font-bold text-gray-900">Samuel Kim</h4>
+                            <p class="text-yellow-600 font-semibold">Directeur de la Communauté</p>
+                            <p class="mt-2 text-sm text-gray-600">Champion de nos utilisateurs, Samuel bâtit des ponts entre nos équipes et notre communauté mondiale.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-events" class="page-content hidden">
+            <section class="py-24 text-center">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">Nos Événements</h2>
+                    <p class="section-subtitle">Nous croyons au pouvoir du rassemblement. Découvrez les conférences, lancements et compétitions que nous organisons pour notre communauté mondiale.</p>
+                </div>
+            </section>
+            
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8">Événements à venir</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="custom-card event-card reveal-on-scroll"><img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=ProCut+Conf" class="w-full h-48 object-cover"><div class="p-6 flex flex-col h-full"><div class="event-tag bg-purple-100 text-purple-800">Conférence</div><p class="font-semibold text-gray-500 mt-2">15 Nov 2025 • Paris</p><h4 class="text-xl font-bold text-gray-900 mt-1">ProCut World Conference</h4><p class="mt-2 flex-grow">Le rendez-vous annuel des créateurs. Ateliers avec des experts, annonces exclusives sur l'IA Symbiotique et networking.</p><a href="#" class="btn btn-secondary mt-4">S'inscrire</a></div></div>
+                        <div class="custom-card event-card reveal-on-scroll"><img src="https://placehold.co/600x400/3B82F6/FFFFFF?text=Traffic+Builder+Champ" class="w-full h-48 object-cover"><div class="p-6 flex flex-col h-full"><div class="event-tag bg-blue-100 text-blue-800">E-Sport</div><p class="font-semibold text-gray-500 mt-2">1-5 Déc 2025 • En Ligne</p><h4 class="text-xl font-bold text-gray-900 mt-1">Traffic Builder Championship</h4><p class="mt-2 flex-grow">Les meilleurs urbanistes du monde s'affrontent pour un cashprize de 1M€. Retransmis en direct avec des analyses d'experts.</p><a href="#" class="btn btn-secondary mt-4">Suivre la compétition</a></div></div>
+                         <div class="custom-card event-card reveal-on-scroll"><img src="https://placehold.co/600x400/10B981/FFFFFF?text=Dev+Day" class="w-full h-48 object-cover"><div class="p-6 flex flex-col h-full"><div class="event-tag bg-green-100 text-green-800">Développeurs</div><p class="font-semibold text-gray-500 mt-2">20 Fév 2026 • Télétravail</p><h4 class="text-xl font-bold text-gray-900 mt-1">Open Source DevDay</h4><p class="mt-2 flex-grow">Une journée dédiée à nos contributeurs SimCore, avec des workshops techniques et des previews sur le protocole "Agora".</p><a href="#" class="btn btn-secondary mt-4">Participer</a></div></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Galerie des Événements Passés</h3>
+                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="reveal-on-scroll"><img src="https://placehold.co/400x300/8B5CF6/FFFFFF?text=Keynote" class="rounded-lg shadow-md aspect-video object-cover"></div>
+                        <div class="reveal-on-scroll"><img src="https://placehold.co/400x300/3B82F6/FFFFFF?text=Winners" class="rounded-lg shadow-md aspect-video object-cover"></div>
+                        <div class="reveal-on-scroll"><img src="https://placehold.co/400x300/10B981/FFFFFF?text=Workshop" class="rounded-lg shadow-md aspect-video object-cover"></div>
+                        <div class="reveal-on-scroll"><img src="https://placehold.co/400x300/F59E0B/FFFFFF?text=Community" class="rounded-lg shadow-md aspect-video object-cover"></div>
+                    </div>
+                </div>
+            </section>
+
+             <section class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8">Archives</h3>
+                     <div class="space-y-4 max-w-4xl mx-auto">
+                        <div class="custom-card p-6 flex justify-between items-center reveal-on-scroll"><div><h4 class="font-bold text-gray-900">Lancement de ProCut 5.0</h4><p>Partenariat avec des studios de cinéma majeurs et introduction du montage collaboratif.</p></div><span class="font-semibold text-gray-500 text-right">Juin 2025</span></div>
+                        <div class="custom-card p-6 flex justify-between items-center reveal-on-scroll"><div><h4 class="font-bold text-gray-900">AI Ethics Summit</h4><p>Co-organisé avec des universités de renom pour définir les standards de l'IA responsable.</p></div><span class="font-semibold text-gray-500 text-right">Mars 2025</span></div>
+                        <div class="custom-card p-6 flex justify-between items-center reveal-on-scroll"><div><h4 class="font-bold text-gray-900">Traffic Builder: Metropolis DLC</h4><p>Lancement de notre plus grosse extension, plébiscitée par la communauté.</p></div><span class="font-semibold text-gray-500 text-right">Novembre 2024</span></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-careers" class="page-content hidden">
+            <section class="py-24 text-center">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">Rejoignez une Équipe de Pionniers</h2>
+                    <p class="section-subtitle">Nous ne sommes pas juste une entreprise, nous sommes une communauté de créateurs, de rêveurs et de bâtisseurs. Votre prochaine grande aventure commence ici.</p>
+                </div>
+            </section>
+            
+            <section class="py-24 bg-white">
+                <div class="container mx-auto px-6 max-w-5xl">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="reveal-on-scroll">
+                            <h3 class="text-3xl font-bold text-gray-900 mb-4">Notre Culture d'Excellence</h3>
+                            <p class="text-lg mb-6">Nous cultivons un environnement basé sur la confiance, l'autonomie et la collaboration. Chez nous, les meilleures idées l'emportent, peu importe d'où elles viennent. Nous encourageons la prise de risque intelligente et célébrons autant les succès que les leçons apprises.</p>
+                            <ul class="space-y-4 text-lg">
+                                <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1 font-bold">✔</span><span>Travaillez sur des projets qui définissent l'industrie.</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1 font-bold">✔</span><span>Bénéficiez d'une flexibilité totale (télétravail, horaires aménagés).</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1 font-bold">✔</span><span>Profitez d'un programme de formation continue de classe mondiale.</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1 font-bold">✔</span><span>Évoluez dans une culture diverse, inclusive et bienveillante.</span></li>
+                            </ul>
+                        </div>
+                        <div class="custom-card p-4 reveal-on-scroll"><img src="https://placehold.co/600x450/8B5CF6/FFFFFF?text=Notre+Équipe" class="rounded-lg w-full"></div>
+                    </div>
+                </div>
+            </section>
+            
+             <section class="py-20">
+                <div class="container mx-auto px-6 text-center">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-12">Avantages et Bien-être</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+                        <div class="reveal-on-scroll"><div class="feature-icon mx-auto mb-4 bg-green-100 text-green-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4 class="font-bold">Santé & Famille</h4><p class="text-sm">Assurance complète, congés parentaux généreux.</p></div>
+                        <div class="reveal-on-scroll"><div class="feature-icon mx-auto mb-4 bg-blue-100 text-blue-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-6M6 20v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/><path d="M12 10V4M6 4h12"/></svg></div><h4 class="font-bold">Flexibilité</h4><p class="text-sm">Télétravail, horaires flexibles, congés illimités.</p></div>
+                        <div class="reveal-on-scroll"><div class="feature-icon mx-auto mb-4 bg-purple-100 text-purple-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4 class="font-bold">Rémunération</h4><p class="text-sm">Salaire compétitif, actions, bonus de performance.</p></div>
+                        <div class="reveal-on-scroll"><div class="feature-icon mx-auto mb-4 bg-yellow-100 text-yellow-700"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><h4 class="font-bold">Développement</h4><p class="text-sm">Budget formation, conférences, mentorat interne.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-6 max-w-4xl">
+                     <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Offres d'emploi en cours</h3>
+                    <div class="space-y-6">
+                        <div class="custom-card p-6 flex flex-col md:flex-row justify-between items-center reveal-on-scroll"><div><h4 class="text-xl font-bold text-gray-900">Ingénieur Moteur de Jeu C++ Senior</h4><p>Paris, France · R&D SimCore</p></div><a href="#" class="btn btn-secondary mt-4 md:mt-0">Postuler</a></div>
+                        <div class="custom-card p-6 flex flex-col md:flex-row justify-between items-center reveal-on-scroll"><div><h4 class="text-xl font-bold text-gray-900">Designer UI/UX Senior - Spatial Computing</h4><p>Montréal, Canada · ProCut "Canvas" Team</p></div><a href="#" class="btn btn-secondary mt-4 md:mt-0">Postuler</a></div>
+                        <div class="custom-card p-6 flex flex-col md:flex-row justify-between items-center reveal-on-scroll"><div><h4 class="text-xl font-bold text-gray-900">Data Scientist - Generative AI</h4><p>Télétravail · AI Ethics "Prometheus"</p></div><a href="#" class="btn btn-secondary mt-4 md:mt-0">Postuler</a></div>
+                        <div class="custom-card p-6 flex flex-col md:flex-row justify-between items-center reveal-on-scroll"><div><h4 class="text-xl font-bold text-gray-900">Community Manager - E-Sports</h4><p>Austin, USA · Traffic Builder League</p></div><a href="#" class="btn btn-secondary mt-4 md:mt-0">Postuler</a></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-contact" class="page-content hidden">
+            <section class="py-24 text-center">
+                <div class="container mx-auto px-6">
+                    <h2 class="section-title">Prenons Contact</h2>
+                    <p class="section-subtitle">Que ce soit pour une question, un partenariat ou un projet, notre porte est toujours ouverte. Nous sommes impatients de vous lire.</p>
+                </div>
+            </section>
+            
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-6 max-w-6xl">
+                    <div class="grid lg:grid-cols-2 gap-16">
+                        <div class="reveal-on-scroll">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Envoyez-nous un message</h3>
+                            <form class="space-y-4">
+                                <div><label class="font-semibold text-gray-900">Nom</label><input type="text" placeholder="Votre nom complet" class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></div>
+                                <div><label class="font-semibold text-gray-900">Email</label><input type="email" placeholder="Votre adresse email" class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></div>
+                                <div><label class="font-semibold text-gray-900">Sujet</label><input type="text" placeholder="L'objet de votre message" class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></div>
+                                <div><label class="font-semibold text-gray-900">Message</label><textarea rows="5" placeholder="Votre message..." class="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea></div>
+                                <button type="submit" class="btn btn-primary w-full">Envoyer le message</button>
+                            </form>
+                        </div>
+                        <div class="reveal-on-scroll">
+                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Questions Fréquentes (FAQ)</h3>
+                             <div class="space-y-4">
+                                <details class="faq-item bg-gray-50 p-4 rounded-lg"><summary>Comment puis-je obtenir du support pour un produit ?</summary><p class="mt-2 text-gray-600">Le meilleur moyen est de visiter la page de support dédiée au produit concerné ou de nous envoyer un email à support@groupbyabd.com.</p></details>
+                                <details class="faq-item bg-gray-50 p-4 rounded-lg"><summary>Proposez-vous des licences étudiantes ?</summary><p class="mt-2 text-gray-600">Oui ! Nous avons des programmes éducatifs pour ProCut et des réductions pour les étudiants et les établissements scolaires. Contactez notre service commercial pour en savoir plus.</p></details>
+                                <details class="faq-item bg-gray-50 p-4 rounded-lg"><summary>Comment postuler à une offre d'emploi ?</summary><p class="mt-2 text-gray-600">Toutes nos offres sont disponibles sur notre page "Carrières". Vous pouvez y postuler directement en ligne. Nous examinons chaque candidature avec attention.</p></details>
+                                <details class="faq-item bg-gray-50 p-4 rounded-lg"><summary>Où sont situés vos bureaux ?</summary><p class="mt-2 text-gray-600">Notre siège social est à Paris, en France, mais nous avons des bureaux majeurs à Montréal, Austin, Tokyo et Singapour. Nous sommes également une entreprise "remote-first".</p></details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-20">
+                <div class="container mx-auto px-6">
+                     <h3 class="text-3xl font-bold text-gray-900 mb-12 text-center">Nos Bureaux dans le Monde</h3>
+                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Paris, France (HQ)</h4>
+                            <p>123 Avenue des Champs-Élysées<br>75008 Paris<br>contact.eu@groupbyabd.com</p>
+                        </div>
+                         <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Montréal, Canada</h4>
+                            <p>456 Rue Sainte-Catherine Ouest<br>Montréal, QC H3B 1B6<br>contact.na@groupbyabd.com</p>
+                        </div>
+                         <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Austin, USA</h4>
+                            <p>789 Congress Avenue<br>Austin, TX 78701<br>contact.us@groupbyabd.com</p>
+                        </div>
+                         <div class="custom-card p-6 reveal-on-scroll">
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Tokyo, Japon</h4>
+                            <p>1-1-2 Otemachi, Chiyoda-ku<br>Tokyo 100-0004<br>contact.apac@groupbyabd.com</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="section-title">Nos Piliers Technologiques</h2>
+                    <p class="section-subtitle">Trois fondations sur lesquelles nous bâtissons l'avenir de l'interaction numérique.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                     <div class="custom-card p-8 text-center reveal-on-scroll">
+                        <div class="feature-icon mx-auto mb-4 w-16 h-16"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/><path d="M12 20a4 4 0 0 0 4-4h-8a4 4 0 0 0 4 4Z"/></svg></div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">IA Générative Avancée</h3>
+                        <p>Notre IA n'est pas qu'un outil, c'est un partenaire créatif. Elle apprend, suggère et crée à vos côtés, des mondes 3D aux bandes sonores complexes.</p>
+                    </div>
+                     <div class="custom-card p-8 text-center reveal-on-scroll" style="transition-delay: 0.1s;">
+                        <div class="feature-icon mx-auto mb-4 w-16 h-16"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Simulation Hyper-Réaliste</h3>
+                        <p>Avec notre moteur SimCore, nous modélisons des systèmes complexes à une échelle sans précédent, de la physique d'une ville à l'économie d'un monde virtuel.</p>
+                    </div>
+                     <div class="custom-card p-8 text-center reveal-on-scroll" style="transition-delay: 0.2s;">
+                        <div class="feature-icon mx-auto mb-4 w-16 h-16"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Écosystèmes Ouverts</h3>
+                        <p>Nous croyons en l'interopérabilité. Nos technologies sont conçues pour se connecter, en utilisant des standards ouverts pour un avenir numérique sans frontières.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-16"><div class="container mx-auto px-6 text-center"><p class="font-bold text-lg">&copy; 2025 group-byabd Corporation. Tous droits réservés.</p></div></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link, a[data-page]');
+            const pages = document.querySelectorAll('.page-content');
+            let carbonChart, playerGrowthChart, procutProductivityChart;
+            
+            // --- GESTION DU PRELOADER ---
+            const preloader = document.getElementById('preloader');
+            const body = document.body;
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                    body.classList.remove('body-loading');
+                }, 1500); // Durée minimale d'affichage
+            });
+
+            // --- GESTION DES ONGLETS DE STATISTIQUES ---
+            const tabs = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'border-purple-500', 'text-purple-600');
+                        t.classList.add('text-gray-500', 'hover:text-purple-600', 'hover:border-purple-300', 'border-transparent');
+                    });
+                    tab.classList.add('active', 'border-purple-500', 'text-purple-600');
+                    tab.classList.remove('text-gray-500', 'hover:text-purple-600', 'hover:border-purple-300', 'border-transparent');
+                    
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                        if (content.dataset.tabContent === target) {
+                            content.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+
+            function showPage(pageId) {
+                pages.forEach(page => page.classList.add('hidden'));
+                const activePage = document.getElementById(`page-${pageId}`);
+                if (activePage) {
+                    activePage.classList.remove('hidden');
+                    window.scrollTo(0, 0);
+
+                    // Re-observer les éléments pour l'animation au changement de page
+                    scrollElements.forEach(el => observer.unobserve(el)); // Réinitialiser l'observation
+                    handleScrollAnimations();
+
+                    if (pageId === 'home') {
+                        if (!carbonChart) createCarbonChart();
+                    } else if (pageId === 'products') {
+                        if (!playerGrowthChart) createPlayerGrowthChart();
+                        if (!procutProductivityChart) createProcutProductivityChart();
+                    }
+                    // Initialiser les compteurs quand la section est visible
+                    initCounters();
+                }
+                
+                document.querySelectorAll('#main-nav .nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) link.classList.add('active');
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    showPage(link.dataset.page);
+                });
+            });
+            
+            // --- GESTION DES COMPTEURS ANIMÉS ---
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.animated) {
+                        startCounter(entry.target);
+                        entry.target.dataset.animated = 'true'; // Marquer comme animé
+                        // observer.unobserve(entry.target); // Optionnel: ne l'animer qu'une fois
+                    }
+                });
+            }, { threshold: 0.5 }); // Déclenche quand 50% du compteur est visible
+
+            function startCounter(counterElement) {
+                const target = parseInt(counterElement.dataset.counter);
+                const suffix = counterElement.dataset.suffix || '';
+                const duration = 2000;
+                let start = null;
+                const step = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = Math.min((timestamp - start) / duration, 1);
+                    let currentValue = Math.floor(progress * target);
+                    
+                    // Formater le nombre avec des espaces comme séparateurs de milliers
+                    counterElement.innerText = currentValue.toLocaleString('fr-FR') + suffix;
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        counterElement.innerText = target.toLocaleString('fr-FR') + suffix; // Assurer la valeur finale exacte
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            function initCounters() {
+                document.querySelectorAll('[data-counter]').forEach(counter => {
+                    // Réinitialiser l'état animé si la page est rechargée ou changée
+                    delete counter.dataset.animated; 
+                    // Observer les compteurs pour les animer quand ils deviennent visibles
+                    counterObserver.observe(counter);
+                });
+            }
+
+
+            const scrollElements = document.querySelectorAll('.reveal-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); });
+            }, { threshold: 0.1 });
+            function handleScrollAnimations() { scrollElements.forEach(el => observer.observe(el)); }
+
+            function createCarbonChart() {
+                const ctx = document.getElementById('carbonFootprintChart');
+                if (!ctx) return;
+                carbonChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Utilisation des produits', 'Fabrication & Logistique', 'Opérations (Data Centers)', 'Fin de vie'],
+                        datasets: [{ data: [67, 23, 8, 2], backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#6B7280'], borderWidth: 0, hoverOffset: 4 }]
+                    },
+                    options: { responsive: true, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { padding: 20, font: { size: 14 } } } } }
+                });
+            }
+
+            function createPlayerGrowthChart() {
+                const ctx = document.getElementById('playerGrowthChart');
+                if (!ctx) return;
+                playerGrowthChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                        datasets: [{ label: 'Joueurs Actifs (en millions)', data: [1, 5, 12, 25, 40, 60, 75], backgroundColor: '#8B5CF6' }]
+                    },
+                    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+                });
+            }
+            
+            function createProcutProductivityChart() {
+                const ctx = document.getElementById('procutProductivityChart');
+                if (!ctx) return;
+                procutProductivityChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Logiciel Standard', 'Avec ProCut', 'Avec ProCut + IA "Nexus"'],
+                        datasets: [{ label: 'Temps de Production pour un projet type (heures)', data: [40, 15, 8], borderColor: '#3B82F6', backgroundColor: 'rgba(59, 130, 246, 0.1)', fill: true, tension: 0.1 }]
+                    },
+                    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, suggestedMax: 45 } } }
+                });
+            }
+
+            showPage('home'); // Afficher la page d'accueil par défaut
+            initCounters(); // Initialiser les compteurs au chargement initial
+        });
+    </script>
+</body>
+</html>
