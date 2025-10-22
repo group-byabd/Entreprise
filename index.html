@@ -18,11 +18,15 @@
             --text-color-dark: #111827;
             --text-color-medium: #4B5563;
             --text-color-light: #6B7280;
+            --text-color-footer: #9CA3AF; /* gray-400 */
             --background-light: #F9FAFB;
             --background-white: #FFFFFF;
+            --background-dark: #111827; /* gray-900 */
             --border-color: #E5E7EB;
+            --border-color-dark: #374151; /* gray-700 */
             --success-color: #10B981;
             --warning-color: #F59E0B;
+            --error-color: #EF4444;
         }
 
         /* --- Interface de Chargement (Preloader) --- */
@@ -305,15 +309,7 @@
         .line-2 { width: 3px; height: 100px; bottom: 125px; left: 50%; transform: translateX(-50%) rotate(0deg); }
         .line-3 { width: 100px; height: 3px; top: 50%; left: 125px; transform: translateY(-50%) rotate(0deg); }
         .line-4 { width: 100px; height: 3px; top: 50%; right: 125px; transform: translateY(-50%) rotate(0deg); }
-        @media (max-width: 640px) {
-            .ecosystem-diagram { min-height: 550px; }
-            .eco-node-1 { top: 0; left: 50%; transform: translate(-50%, 0); }
-            .eco-node-2 { top: auto; bottom: 0; left: 50%; transform: translate(-50%, 0); }
-            .eco-node-3 { top: 33%; left: 50%; transform: translate(-50%, 0); }
-            .eco-node-4 { top: 66%; left: 50%; transform: translate(-50%, 0); }
-            .eco-center { display: none; } /* Cacher le centre sur mobile pour un layout vertical */
-             .eco-line { display: none; } /* Cacher les lignes sur mobile */
-        }
+        
         
         /* --- AJOUT: Cartes Dirigeants --- */
         .leader-card {
@@ -370,6 +366,425 @@
             transform: scale(1.1);
         }
 
+        /* --- AJOUT: Footer Détaillé --- */
+        .main-footer {
+            background-color: var(--background-dark);
+            color: var(--text-color-footer);
+            padding: 4rem 1.5rem 2rem 1.5rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        .footer-column {
+            font-size: 0.875rem;
+        }
+        .footer-column.span-2 {
+            grid-column: span 2 / span 2;
+        }
+        .footer-title {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            color: var(--text-color-footer);
+            transition: color 0.2s ease;
+        }
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        .footer-newsletter input {
+            background-color: var(--border-color-dark);
+            border: 1px solid var(--border-color-dark);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+        .footer-newsletter button {
+            background: var(--primary-color-start);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            width: 100%;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        .footer-newsletter button:hover {
+            background: #2563EB; /* blue-700 */
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--border-color-dark);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            gap: 1.5rem;
+        }
+         @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+         }
+        .footer-socials {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .footer-socials a {
+            color: var(--text-color-footer);
+            transition: color 0.2s ease;
+        }
+        .footer-socials a:hover {
+            color: white;
+        }
+        
+        /* --- AJOUT: Carrousel de Logos Clients --- */
+        .logo-scroller {
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+        }
+        .logo-scroller-inner {
+            display: flex;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+        .logo-scroller-inner img {
+            height: 40px;
+            margin: 0 2.5rem;
+            filter: grayscale(1);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .logo-scroller-inner img:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* --- AJOUT: Carrousel de Témoignages --- */
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .testimonial-slide {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .testimonial-slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        .testimonial-slide img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--border-color);
+        }
+        .testimonial-quote {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--text-color-dark);
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--text-color-dark);
+        }
+        .testimonial-role {
+            font-size: 0.875rem;
+            color: var(--text-color-light);
+        }
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .testimonial-dot.active {
+            background-color: var(--primary-color-start);
+        }
+
+        /* --- AJOUT: Tableau de Tarification (Pricing) --- */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .pricing-card {
+            background: var(--background-white);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card-featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color-end);
+            box-shadow: 0 20px 25px -5px rgba(139, 92, 246, 0.1), 0 10px 10px -5px rgba(139, 92, 246, 0.04);
+            position: relative;
+        }
+        .featured-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary-color-start), var(--primary-color-end));
+            color: white;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+        .pricing-card h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color-dark);
+            margin-bottom: 0.5rem;
+        }
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--text-color-dark);
+            margin: 1rem 0;
+        }
+        .pricing-card .price .period {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-color-light);
+        }
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: left;
+            flex-grow: 1;
+        }
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .pricing-features li svg {
+            color: var(--success-color);
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+        .pricing-card .btn {
+            width: 100%;
+            padding: 1rem 2rem;
+        }
+
+        /* --- AJOUT: Frise Horizontale (Recrutement) --- */
+        .horizontal-timeline {
+            display: flex;
+            overflow-x: auto;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+        .horizontal-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--border-color);
+            transform: translateY(-50%);
+        }
+        .timeline-step {
+            position: relative;
+            min-width: 250px;
+            padding: 1rem;
+        }
+        .timeline-step-dot {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--background-white);
+            border: 4px solid var(--primary-color-start);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-step-content {
+            margin-top: 50px; /* Espace pour le point */
+            background: var(--background-white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+         @media (min-width: 768px) {
+            .timeline-step-content {
+                margin-top: 0;
+                margin-left: 50px;
+            }
+             .timeline-step-dot {
+                left: 50%;
+                top: 1rem;
+                transform: translateX(-50%);
+            }
+         }
+
+        /* --- AJOUT: Bannière de Cookies --- */
+        #cookie-banner {
+            position: fixed;
+            bottom: -200px;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(8px);
+            color: var(--text-color-footer);
+            padding: 1.5rem;
+            border-radius: 12px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: bottom 0.5s ease-in-out;
+            max-width: 600px;
+        }
+        @media (min-width: 640px) {
+            #cookie-banner {
+                left: 2rem;
+                bottom: -200px; /* Commence caché */
+            }
+        }
+        #cookie-banner.visible {
+            bottom: 2rem; /* Glisse vers le haut */
+        }
+        #cookie-banner p {
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        #cookie-banner .btn-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+        #cookie-banner .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+        #cookie-banner .btn-secondary {
+            background-color: var(--border-color-dark);
+            border-color: var(--border-color-dark);
+            color: white;
+        }
+        #cookie-banner .btn-secondary:hover {
+            background-color: #4B5563; /* gray-600 */
+        }
+
+        /* --- AJOUT: Bouton "Retour en Haut" --- */
+        #back-to-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(90deg, var(--primary-color-start), var(--primary-color-end));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        #back-to-top-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        #back-to-top-btn:hover {
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        }
+
+        /* --- AJOUT: Validation de Formulaire --- */
+        .form-group {
+            position: relative;
+        }
+        .form-group input, .form-group textarea {
+            transition: border-color 0.2s ease;
+        }
+        .form-group input.invalid, .form-group textarea.invalid {
+            border-color: var(--error-color);
+        }
+        .form-group input:focus.invalid, .form-group textarea:focus.invalid {
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4); /* red-400 */
+        }
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none; /* Caché par défaut */
+        }
+        .form-group.invalid .error-message {
+            display: block; /* Affiché si le groupe est invalide */
+        }
+        #form-success-message {
+            color: var(--success-color);
+            background: #ECFDF5; /* green-50 */
+            border: 1px solid var(--success-color);
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
 
         /* --- Style spécifique pour les écrans plus petits si nécessaire */
         @media (max-width: 640px) {
@@ -388,6 +803,13 @@
             .hero-content h1 { font-size: 2.75rem; }
             .comparison-table { font-size: 0.875rem; }
             .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
+            
+            .eco-node-1 { top: 0; left: 50%; transform: translate(-50%, 0); }
+            .eco-node-2 { top: auto; bottom: 0; left: 50%; transform: translate(-50%, 0); }
+            .eco-node-3 { top: 33%; left: 50%; transform: translate(-50%, 0); }
+            .eco-node-4 { top: 66%; left: 50%; transform: translate(-50%, 0); }
+            .eco-center { display: none; }
+             .eco-line { display: none; }
         }
         /* --- FIN AJOUT CSS --- */
     </style>
@@ -599,6 +1021,68 @@
                 </div>
             </div>
             </section>
+            
+            <section id="clients-section" class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                    <h3 class="text-2xl font-bold text-center text-gray-900 mb-4">Ils construisent l'avenir avec nos outils</h3>
+                    <p class="text-center text-gray-600 mb-12">Des plus grands studios de cinéma aux développeurs de jeux indépendants, ils nous font confiance.</p>
+                    <div class="logo-scroller reveal-on-scroll">
+                        <div class="logo-scroller-inner">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Weta_Digital_Logo.svg" alt="Weta Digital">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Unity_Technologies_logo.svg" alt="Unity">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Pixar_logo.svg" alt="Pixar">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Epic_Games_logo.svg" alt="Epic Games">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Weta_Digital_Logo.svg" alt="Weta Digital">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Unity_Technologies_logo.svg" alt="Unity">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Pixar_logo.svg" alt="Pixar">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Epic_Games_logo.svg" alt="Epic Games">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="testimonials-section" class="py-24">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 reveal-on-scroll">
+                        <h2 class="section-title">Ce que nos utilisateurs disent</h2>
+                        <p class="section-subtitle">Des créateurs et développeurs qui repoussent les limites avec AbdoraX.</p>
+                    </div>
+                    <div class="testimonial-slider custom-card p-8 reveal-on-scroll">
+                        <div id="testimonial-slides-container">
+                            <div class="testimonial-slide active">
+                                <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Avatar">
+                                <blockquote class="testimonial-quote">"ProCut a réduit notre temps de post-production de 40%. L'IA 'Nexus' n'est pas un gadget, c'est un membre à part entière de notre équipe créative."</blockquote>
+                                <p class="testimonial-author">Sarah Chen</p>
+                                <p class="testimonial-role">Cheffe Monteuse, Studio Kinetix</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Avatar">
+                                <blockquote class="testimonial-quote">"En tant que développeur solo, la communauté open source d'AbdoraX et le moteur de Traffic Builder m'ont permis de créer des simulations que je n'aurais jamais cru possibles."</blockquote>
+                                <p class="testimonial-author">David Kim</p>
+                                <p class="testimonial-role">Créateur de 'CitySim Dynamics'</p>
+                            </div>
+                            <div class="testimonial-slide">
+                                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Avatar">
+                                <blockquote class="testimonial-quote">"La profondeur de simulation de Traffic Builder est tout simplement inégalée. C'est l'outil de planification urbaine le plus réaliste sur le marché, point final."</blockquote>
+                                <p class="testimonial-author">Dr. Emily Rodriguez</p>
+                                <p class="testimonial-role">Urbaniste, MIT Media Lab</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-dots" id="testimonial-dots-container">
+                            <span class="testimonial-dot active" data-slide="0"></span>
+                            <span class="testimonial-dot" data-slide="1"></span>
+                            <span class="testimonial-dot" data-slide="2"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
         </div>
 
         <div id="page-products" class="page-content hidden">
@@ -662,14 +1146,58 @@
                 </div>
             </section>
             
-            <section class="py-20">
+            <section id="pricing-section" class="py-24">
                 <div class="container mx-auto px-6">
-                    <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Impact de ProCut sur la Productivité</h3>
-                    <div class="custom-card p-8 reveal-on-scroll"><canvas id="procutProductivityChart"></canvas></div>
+                    <div class="text-center mb-16 reveal-on-scroll">
+                        <h2 class="section-title">La puissance de ProCut à votre portée</h2>
+                        <p class="section-subtitle">Choisissez le plan qui correspond à votre ambition créative. Pas de frais cachés, juste de la puissance pure.</p>
+                    </div>
+                    <div class="pricing-grid">
+                        <div class="pricing-card reveal-on-scroll">
+                            <h4>Indépendant</h4>
+                            <p class="text-gray-500">Pour les créateurs solo et les freelances.</p>
+                            <div class="price">29€<span class="period">/mois</span></div>
+                            <ul class="pricing-features">
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Montage vidéo 4K</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Outils IA de base (Audio, Couleur)</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>1To de stockage cloud</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Support communautaire</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary">Commencer</a>
+                        </div>
+                        
+                        <div class="pricing-card pricing-card-featured reveal-on-scroll">
+                            <div class="featured-badge">Recommandé</div>
+                            <h4>Pro</h4>
+                            <p class="text-gray-500">Pour les studios et les équipes professionnelles.</p>
+                            <div class="price">59€<span class="period">/mois/utilisateur</span></div>
+                            <ul class="pricing-features">
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Montage vidéo 8K & HDR</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Accès complet IA "Nexus"</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>10To de stockage cloud partagé</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Workflows collaboratifs</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Support prioritaire 24/7</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary">Démarrer l'essai gratuit</a>
+                        </div>
+                        
+                        <div class="pricing-card reveal-on-scroll">
+                            <h4>Licence Perpétuelle</h4>
+                            <p class="text-gray-500">Achetez-le une fois, possédez-le pour toujours.</p>
+                            <div class="price">349€<span class="period">/paiement unique</span></div>
+                            <ul class="pricing-features">
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Licence ProCut (Version 3.0)</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Mises à jour mineures incluses</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>Travail 100% hors ligne</li>
+                                <li><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>IA Nexus (Achat séparé)</li>
+                            </ul>
+                            <a href="#" class="btn btn-secondary">Acheter maintenant</a>
+                        </div>
+                    </div>
                 </div>
             </section>
-
-             <section class="py-20 bg-white">
+            
+            <section class="py-20 bg-white">
                 <div class="container mx-auto px-6">
                      <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">Un Outil pour Chaque Créateur</h3>
                      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -758,6 +1286,38 @@
                             <div class="eco-node eco-node-2">Création (ProCut)</div>
                             <div class="eco-node eco-node-3">Communauté (Open Source)</div>
                             <div class="eco-node eco-node-4">Avenir (Métavers "Agora")</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="rse-section" class="py-24 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 reveal-on-scroll">
+                        <h2 class="section-title">Construire un Avenir Responsable</h2>
+                        <p class="section-subtitle">Notre innovation ne vaut que si elle est partagée et durable. Nous nous engageons pour un impact positif.</p>
+                    </div>
+                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div class="custom-card p-8 reveal-on-scroll">
+                            <div class="feature-icon mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                            </div>
+                            <h4 class="text-2xl font-bold text-gray-900 mb-2">IA Éthique</h4>
+                            <p>Nous développons des IA transparentes, équitables et auditables. Notre charte "Guardian" garantit que nos technologies respectent l'humain.</p>
+                        </div>
+                        <div class="custom-card p-8 reveal-on-scroll" style="transition-delay: 0.1s;">
+                            <div class="feature-icon mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-10a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                            </div>
+                            <h4 class="text-2xl font-bold text-gray-900 mb-2">Code Ouvert</h4>
+                            <p>Nous reversons 5% de notre temps d'ingénierie à des projets open source. Nous croyons que la collaboration est la clé de l'innovation.</p>
+                        </div>
+                        <div class="custom-card p-8 reveal-on-scroll" style="transition-delay: 0.2s;">
+                            <div class="feature-icon mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                            </div>
+                            <h4 class="text-2xl font-bold text-gray-900 mb-2">Objectif Zéro Carbone</h4>
+                            <p>Nos data centers fonctionnent à 90% d'énergies renouvelables, et nous visons la neutralité carbone totale d'ici 2030.</p>
                         </div>
                     </div>
                 </div>
@@ -984,8 +1544,54 @@
                      </div>
                 </div>
             </section>
+            
+            <section id="recruitment-process-section" class="py-24 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16 reveal-on-scroll">
+                        <h2 class="section-title">Notre Processus de Recrutement</h2>
+                        <p class="section-subtitle">Conçu pour être transparent, équitable et pour découvrir votre véritable potentiel.</p>
+                    </div>
+                    <div class="horizontal-timeline reveal-on-scroll">
+                        <div class="timeline-step">
+                            <div class="timeline-step-dot"></div>
+                            <div class="timeline-step-content">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">1. Candidature</h4>
+                                <p>Soumettez votre CV et un mot expliquant pourquoi vous êtes passionné par AbdoraX.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-step-dot"></div>
+                            <div class="timeline-step-content">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">2. Entretien RH</h4>
+                                <p>Une discussion de 30 minutes pour parler de vos motivations et de notre culture.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-step-dot"></div>
+                            <div class="timeline-step-content">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">3. Défi Technique</h4>
+                                <p>Un exercice à faire chez vous, conçu pour simuler les problèmes que nous résolvons.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-step-dot"></div>
+                            <div class="timeline-step-content">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">4. Entretiens Finaux</h4>
+                                <p>Rencontrez vos futurs collègues et managers pour un entretien approfondi.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="timeline-step-dot"></div>
+                            <div class="timeline-step-content">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">5. Offre</h4>
+                                <p>Bienvenue chez AbdoraX ! Nous vous faisons une offre pour rejoindre l'équipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <section id="jobs-section" class="py-20 bg-white"> <div class="container mx-auto px-6 max-w-4xl">
+            <section id="jobs-section" class="py-20 bg-gray-50"> <div class="container mx-auto px-6 max-w-4xl">
                      <h3 class="text-3xl font-bold text-gray-900 text-center mb-8">Offres d'emploi en cours</h3>
                     <div class="space-y-6">
                         <a href="#" class="custom-card p-6 block reveal-on-scroll">
@@ -1037,17 +1643,22 @@
             
             <section id="form-faq-section" class="py-20 bg-white"> <div class="container mx-auto px-6 max-w-6xl">
                     <div class="grid lg:grid-cols-2 gap-16">
-                         <div class="reveal-on-scroll"> <h3 class="text-2xl font-bold text-gray-900 mb-6">Envoyez-nous un message</h3>
-                             <form class="space-y-6">
-                                <div>
+                         <div class="reveal-on-scroll"> 
+                             <h3 class="text-2xl font-bold text-gray-900 mb-6">Envoyez-nous un message</h3>
+                             <div id="form-success-message">Merci ! Votre message a été envoyé avec succès. Nous vous répondrons bientôt.</div>
+                             
+                             <form id="contact-form" class="space-y-6 mt-4" novalidate>
+                                <div class="form-group">
                                     <label for="name" class="block text-sm font-medium text-gray-700">Nom complet</label>
-                                    <input type="text" name="name" id="name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    <span class="error-message">Veuillez entrer votre nom complet.</span>
                                 </div>
-                                <div>
+                                <div class="form-group">
                                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                    <input type="email" name="email" id="email" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                    <span class="error-message">Veuillez entrer une adresse email valide.</span>
                                 </div>
-                                 <div>
+                                 <div class="form-group">
                                     <label for="subject" class="block text-sm font-medium text-gray-700">Sujet</label>
                                     <select id="subject" name="subject" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-white">
                                         <option>Demande Presse</option>
@@ -1057,9 +1668,10 @@
                                         <option>Autre</option>
                                     </select>
                                 </div>
-                                <div>
+                                <div class="form-group">
                                     <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                                    <textarea id="message" name="message" rows="5" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"></textarea>
+                                    <textarea id="message" name="message" rows="5" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500"></textarea>
+                                    <span class="error-message">Veuillez entrer votre message.</span>
                                 </div>
                                 <div>
                                     <button type="submit" class="btn btn-primary w-full">Envoyer le message</button>
@@ -1137,15 +1749,19 @@
         <div class="container mx-auto px-6">
             <div class="bottom-menu-content" data-page="home">
                 <a data-scroll-target="performance-section">Performance</a>
-                <a data-scroll-target="pillars-section">Piliers Tech</a>
+                <a data-scroll-target="pillars-section">Piliers</a>
+                <a data-scroll-target="clients-section">Clients</a>
+                <a data-scroll-target="testimonials-section">Avis</a>
             </div>
             <div class="bottom-menu-content" data-page="products">
                 <a data-scroll-target="traffic-builder-section">Traffic Builder</a> 
                 <a data-scroll-target="procut-section">ProCut</a>
+                <a data-scroll-target="pricing-section">Tarifs</a>
             </div>
             <div class="bottom-menu-content" data-page="vision">
                 <a data-scroll-target="roadmap-section">Feuille de Route</a> 
                 <a data-scroll-target="ecosystem-section">Écosystème</a>
+                <a data-scroll-target="rse-section">RSE</a>
             </div>
             <div class="bottom-menu-content" data-page="about">
                 <a data-scroll-target="history-section">Histoire</a> 
@@ -1160,6 +1776,7 @@
             <div class="bottom-menu-content" data-page="careers">
                 <a data-scroll-target="culture-section">Culture</a> 
                 <a data-scroll-target="benefits-section">Avantages</a>
+                <a data-scroll-target="recruitment-process-section">Processus</a>
                 <a data-scroll-target="jobs-section">Offres</a>
             </div>
             <div class="bottom-menu-content" data-page="contact">
@@ -1169,7 +1786,97 @@
         </div>
     </footer>
     
-    <footer class="bg-gray-900 text-white py-16"><div class="container mx-auto px-6 text-center"><p class="font-bold text-lg">&copy; 2025 AbdoraX Corporation. Tous droits réservés.</p></div></footer>
+    <footer class="main-footer">
+        <div class="container mx-auto">
+            <div class="footer-grid">
+                <div class="footer-column span-2">
+                    <a href="#" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 inline-block" data-page="home">AbdoraX</a>
+                    <p class="mb-4">Recevez les dernières nouvelles sur nos produits, événements et innovations.</p>
+                    <form class="footer-newsletter">
+                        <label for="footer-email" class="sr-only">Votre email</label>
+                        <input type="email" id="footer-email" placeholder="Votre email">
+                        <button type="submit">S'inscrire</button>
+                    </form>
+                </div>
+                
+                <div class="footer-column">
+                    <h5 class="footer-title">Produits</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="products">ProCut</a></li>
+                        <li><a href="#" data-page="products">Traffic Builder</a></li>
+                        <li><a href="#" data-page="products" data-scroll-target="pricing-section">Tarifs</a></li>
+                        <li><a href="#">Téléchargements</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h5 class="footer-title">Entreprise</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="about">À propos</a></li>
+                        <li><a href="#" data-page="careers">Carrières</a></li>
+                        <li><a href="#" data-page="contact">Presse</a></li>
+                        <li><a href="#" data-page="vision" data-scroll-target="rse-section">RSE</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h5 class="footer-title">Communauté</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Open Source</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#" data-page="events">Événements</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h5 class="footer-title">Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="contact">Nous Contacter</a></li>
+                        <li><a href="#" data-page="contact">FAQ</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Statut des services</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="text-sm">&copy; 2025 AbdoraX Corporation. Tous droits réservés.</p>
+                <div class="footer-socials">
+                    <a href="#" title="X (Twitter)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75zM11.46 13.812h1.57L4.74 2.145H3.065l8.395 11.667z"/>
+                        </svg>
+                    </a>
+                    <a href="#" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.903 11.964V6.37H2.666v6.738h2.237zM3.784 5.426a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4zM13.337 13.134V9.39c0-1.85-1.328-1.954-1.52-1.954-.3 0-.58.12-.8.33-.22.21-.36.49-.43.79-.11.45-.1 1.26-.1 1.63v3.27h-2.23V6.37h2.23v1.037c.39-.7 1.09-1.2 2-1.2 1.4 0 2.8.9 2.8 3.2v3.727h-2.237z"/>
+                        </svg>
+                    </a>
+                    <a href="#" title="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <div id="cookie-banner">
+        <p>Ce site utilise des cookies pour améliorer votre expérience, analyser le trafic et à des fins publicitaires. En continuant à utiliser ce site, vous acceptez notre <a href="#" class="text-white underline">Politique de Cookies</a>.</p>
+        <div class="btn-group">
+            <button id="cookie-accept" class="btn btn-primary">Accepter</button>
+            <button id="cookie-decline" class="btn btn-secondary">Refuser</button>
+        </div>
+    </div>
+    
+    <a id="back-to-top-btn" href="#" title="Retour en haut">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </a>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1177,32 +1884,46 @@
             const pages = document.querySelectorAll('.page-content');
             let carbonChart, playerGrowthChart, procutProductivityChart;
             
-            // --- AJOUT: Références Menu Mobile ---
+            // --- Références Menu Mobile ---
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileNavLinks = document.querySelectorAll('#mobile-nav-links .nav-link');
             const burgerIcon = document.getElementById('burger-icon');
             const closeIcon = document.getElementById('close-icon');
-            // --- FIN AJOUT ---
 
+            // --- Références Menu Inférieur ---
             const bottomMenu = document.getElementById('bottom-menu');
             const bottomMenuContents = document.querySelectorAll('.bottom-menu-content');
             
+            // --- Références Preloader ---
             const preloader = document.getElementById('preloader');
             const body = document.body;
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     preloader.classList.add('hidden');
                     body.classList.remove('body-loading');
-                }, 1500); // Augmenté pour un effet plus "premium"
+                }, 1500); 
             });
 
-            // --- AJOUT: Logique Menu Mobile ---
+            // --- AJOUT: Références Nouveaux Éléments ---
+            const testimonialSlides = document.querySelectorAll('#testimonial-slides-container .testimonial-slide');
+            const testimonialDots = document.querySelectorAll('#testimonial-dots-container .testimonial-dot');
+            const backToTopBtn = document.getElementById('back-to-top-btn');
+            const cookieBanner = document.getElementById('cookie-banner');
+            const cookieAcceptBtn = document.getElementById('cookie-accept');
+            const cookieDeclineBtn = document.getElementById('cookie-decline');
+            const contactForm = document.getElementById('contact-form');
+            const formSuccessMessage = document.getElementById('form-success-message');
+            let currentSlide = 0;
+            let slideInterval;
+            // --- FIN AJOUT ---
+
+            // --- Logique Menu Mobile ---
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('open');
                 burgerIcon.classList.toggle('hidden');
                 closeIcon.classList.toggle('hidden');
-                body.classList.toggle('body-loading'); // Empêche le scroll quand le menu est ouvert
+                body.classList.toggle('body-loading'); 
             });
             
             function closeMobileMenu() {
@@ -1212,15 +1933,13 @@
                  body.classList.remove('body-loading');
             }
             
-            // Fermer le menu en cliquant sur un lien
             mobileNavLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     closeMobileMenu();
-                    // La navigation est déjà gérée par l'autre listener 'navLinks'
                 });
             });
-            // --- FIN AJOUT ---
 
+            // --- Logique Tabs (Onglets) ---
             const tabs = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => {
@@ -1242,6 +1961,7 @@
                 });
             });
 
+            // --- Logique Navigation SPA (Single Page Application) ---
             function showPage(pageId) {
                 pages.forEach(page => page.classList.add('hidden'));
                 const activePage = document.getElementById(`page-${pageId}`);
@@ -1265,18 +1985,20 @@
                     activePage.classList.remove('hidden');
                     window.scrollTo(0, 0);
 
-                    // Réinitialiser les animations et compteurs pour la nouvelle page
                     if (typeof observer !== 'undefined') { 
                         scrollElements.forEach(el => observer.unobserve(el)); 
-                        handleScrollAnimations(); // Réapplique l'observation
+                        handleScrollAnimations(); 
                     }
 
-                    // Re-créer les graphiques pour éviter les bugs d'affichage
                     if (pageId === 'home') { 
                          if (carbonChart) carbonChart.destroy(); 
                          createCarbonChart(); 
-                    } 
-                    else if (pageId === 'products') {
+                         startTestimonialSlider(); // Démarrer le slider
+                    } else {
+                         stopTestimonialSlider(); // Arrêter le slider si on n'est pas sur l'accueil
+                    }
+                     
+                    if (pageId === 'products') {
                         if (playerGrowthChart) playerGrowthChart.destroy();
                         if (procutProductivityChart) procutProductivityChart.destroy();
                         createPlayerGrowthChart();
@@ -1287,13 +2009,13 @@
                     }
                 }
                 
-                // Mettre à jour le lien actif dans le header principal
+                // Maj liens actifs (bureau)
                 document.querySelectorAll('#main-nav .nav-link').forEach(link => {
                     link.classList.remove('active');
                     if (link.dataset.page === pageId) link.classList.add('active');
                 });
                 
-                // Mettre à jour le lien actif dans le menu mobile
+                // Maj liens actifs (mobile)
                 mobileNavLinks.forEach(link => {
                     link.classList.remove('active');
                     if (link.dataset.page === pageId) link.classList.add('active');
@@ -1303,7 +2025,10 @@
             navLinks.forEach(link => {
                  link.addEventListener('click', (event) => {
                     event.preventDefault();
-                    showPage(link.dataset.page);
+                    const pageId = link.dataset.page;
+                    if(pageId) {
+                        showPage(pageId);
+                    }
                 });
             });
             
@@ -1354,21 +2079,18 @@
                 entries.forEach(entry => { 
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                    } else {
-                        // Optionnel: remove class if you want animation to replay on scroll up
-                        // entry.target.classList.remove('is-visible'); 
                     }
                 });
             }, { threshold: 0.1 });
             function handleScrollAnimations() { 
                 document.querySelectorAll('.reveal-on-scroll').forEach(el => {
-                    el.classList.remove('is-visible'); // Ensure it's hidden initially
+                    el.classList.remove('is-visible');
                     observer.observe(el);
                 }); 
             }
             // --- Fin Logique Animation au Scroll ---
 
-            // --- Gestion Scroll Fluide Menu Inférieur ---
+            // --- Logique Scroll Fluide Menu Inférieur ---
             bottomMenu.addEventListener('click', function(event) {
                 const targetLink = event.target.closest('a[data-scroll-target]'); 
                 if (targetLink) {
@@ -1390,7 +2112,127 @@
                     }
                 }
             });
+            
+            // --- AJOUT: Logique Slider Témoignages ---
+            function showTestimonialSlide(index) {
+                testimonialSlides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    testimonialDots[i].classList.remove('active');
+                });
+                testimonialSlides[index].classList.add('active');
+                testimonialDots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextTestimonialSlide() {
+                let nextSlide = (currentSlide + 1) % testimonialSlides.length;
+                showTestimonialSlide(nextSlide);
+            }
+
+            function startTestimonialSlider() {
+                stopTestimonialSlider(); // Clear any existing interval
+                if (testimonialSlides.length > 0) {
+                    showTestimonialSlide(0); // Show first slide immediately
+                    slideInterval = setInterval(nextTestimonialSlide, 5000); // Change slide every 5 seconds
+                }
+            }
+
+            function stopTestimonialSlider() {
+                clearInterval(slideInterval);
+            }
+
+            testimonialDots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    const slideIndex = parseInt(e.target.dataset.slide);
+                    showTestimonialSlide(slideIndex);
+                    stopTestimonialSlider(); // Stop auto-play on manual click
+                    startTestimonialSlider(); // Restart auto-play
+                });
+            });
             // --- FIN AJOUT ---
+
+            // --- AJOUT: Logique Bouton "Retour en Haut" ---
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            // --- FIN AJOUT ---
+
+            // --- AJOUT: Logique Bannière de Cookies ---
+            function hideCookieBanner() {
+                cookieBanner.classList.remove('visible');
+            }
+
+            function showCookieBanner() {
+                cookieBanner.classList.add('visible');
+            }
+            
+            if (localStorage.getItem('cookie_consent')) {
+                hideCookieBanner();
+            } else {
+                // Délai pour ne pas être trop intrusif
+                setTimeout(showCookieBanner, 3000);
+            }
+
+            cookieAcceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent', 'accepted');
+                hideCookieBanner();
+            });
+
+            cookieDeclineBtn.addEventListener('click', () => {
+                localStorage.setItem('cookie_consent', 'declined');
+                hideCookieBanner();
+            });
+            // --- FIN AJOUT ---
+            
+            // --- AJOUT: Logique Validation Formulaire ---
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (validateForm()) {
+                        // Simuler un envoi réussi
+                        formSuccessMessage.style.display = 'block';
+                        contactForm.style.display = 'none';
+                    }
+                });
+
+                function validateForm() {
+                    let isValid = true;
+                    const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+                    
+                    inputs.forEach(input => {
+                        const parent = input.closest('.form-group');
+                        if (!input.value.trim() || (input.type === 'email' && !validateEmail(input.value))) {
+                            isValid = false;
+                            parent.classList.add('invalid');
+                            input.classList.add('invalid');
+                        } else {
+                            parent.classList.remove('invalid');
+                            input.classList.remove('invalid');
+                        }
+                    });
+                    
+                    return isValid;
+                }
+                
+                function validateEmail(email) {
+                    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(String(email).toLowerCase());
+                }
+            }
+            // --- FIN AJOUT ---
+
 
             // --- Fonctions Création Graphiques (avec vérification et destruction) ---
             function createCarbonChart() {
@@ -1469,8 +2311,8 @@
 
 
             // Initialisation au chargement
-            showPage('home'); // Afficher la page d'accueil
-            handleScrollAnimations(); // Lancer l'observation initiale pour les animations
+            showPage('home'); 
+            handleScrollAnimations(); 
 
         });
     </script>
