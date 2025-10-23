@@ -955,6 +955,25 @@
             #offices-scroller::-webkit-scrollbar {
                 display: none; /* Chrome, Safari et Opera */
         }
+            /* --- AJOUT: Carrousel Bureaux (styles existants) --- */
+ #offices-scroller {
+     scroll-behavior: smooth;
+     -ms-overflow-style: none;  /* IE et Edge */
+     scrollbar-width: none;  /* Firefox */
+ }
+ #offices-scroller::-webkit-scrollbar {
+     display: none; /* Chrome, Safari et Opera */
+ }
+
+ /* --- AJOUT: Cibler AUSSI le deuxième carrousel --- */
+ #upcoming-offices-scroller { /* <= AJOUTE CET ID */
+     scroll-behavior: smooth;
+     -ms-overflow-style: none;  /* IE et Edge */
+     scrollbar-width: none;  /* Firefox */
+ }
+ #upcoming-offices-scroller::-webkit-scrollbar { /* <= AJOUTE CET ID */
+     display: none; /* Chrome, Safari et Opera */
+ }
     </style>
 </head>
 <body class="antialiased body-loading">
