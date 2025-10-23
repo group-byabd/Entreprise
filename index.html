@@ -2070,6 +2070,55 @@
     </div>
 </section>
 <div class="text-3xl font-bold text-gray-900 mb-12 text-center"><div class="reveal-on-scroll"><div class="text-4xl md:text-5xl font-bold gradient-text" data-counter="17">0</div><p class="mt-2 font-semibold text-gray-700">Bureaux dans le monde</p></div></div>
+<section id="offices-section" class="py-20">
+    <div class="container mx-auto px-6 relative">
+        <h3 class="text-3xl font-bold text-gray-900 mb-12 text-center">Bureaux à venir</h3>
+
+        <div id="upcoming-offices-wrapper" class="overflow-hidden"> <div id="upcoming-offices-scroller" class="flex gap-8 overflow-x-auto"> 
+        
+        <div class="custom-card p-6 reveal-on-scroll flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                    <img src="https://lapetiterade.com/wp-content/uploads/2023/11/kuala-lumpur.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">Kuala Lampur, Malaisie</h4>
+                    <p class="text-gray-600">WeWork – 1 Sentral, Jalan Rakyat, Kuala Lumpur.</p>
+                </div>
+                <div class="custom-card p-6 reveal-on-scroll flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                    <img src="https://www.destination-dubai.fr/img/cms/QUARTIERS%20DUBAI/RESIZE/Business-Bay-Dubai%20RESIZE.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">Dubai, UAE</h4>
+                    <p class="text-gray-600">Regus – Dubai Media City, Dubai.</p>
+                </div>
+                <div class="custom-card p-6 reveal-on-scroll flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                    <img src="https://www.agoda.com/wp-content/uploads/2024/05/jakarta-2-1244x700.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">Jakarta, Indonésie</h4>
+                    <p class="text-gray-600">Regus – The City Tower, Jakarta.</p>
+                </div>
+                <div class="custom-card p-6 reveal-on-scroll flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                    <img src="https://www.flir.fr/globalassets/industrial/discover/traffic/montevideo-acyclica-banner.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">Montevideo, Uruguay</h4>
+                    <p class="text-gray-600">Regus – Av. 18 de Julio, Montevideo.</p>
+                </div>
+                <div class="custom-card p-6 reveal-on-scroll flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                    <img src="https://www.10wallpaper.com/wallpaper/1366x768/1209/Sydney_central_business_district-architectural_scenery_wallpaper_1366x768.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">Sydney, Australie</h4>
+                    <p class="text-gray-600">WeWork – 100 Harris St, Pyrmont, Sydney.</p>
+                </div>
+                <div class="custom-card p-6 reveal-on-scroll flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4">
+                    <img src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/516000/516449-melbourne-cbd.jpg" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">Melbourne, Australie</h4>
+                    <p class="text-gray-600">Regus – 530 Collins St, Melbourne.</p>
+                </div>
+
+                </div>
+        </div>
+        <button id="upcoming-office-scroll-left" class="absolute top-1/2 -translate-y-1/2 left-0 z-10 bg-white/70 hover:bg-white dark:bg-gray-800/70 dark:hover:bg-gray-800 rounded-full p-2 shadow-md transition-opacity duration-300" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="upcoming-office-scroll-right" class="absolute top-1/2 -translate-y-1/2 right-0 z-10 bg-white/70 hover:bg-white dark:bg-gray-800/70 dark:hover:bg-gray-800 rounded-full p-2 shadow-md transition-opacity duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+        </div>
+    </section>
+
+<div class="text-3xl font-bold text-gray-900 mb-12 text-center"><div class="reveal-on-scroll"><div class="text-4xl md:text-5xl font-bold gradient-text" data-counter="6">0</div><p class="mt-2 font-semibold text-gray-700">Bureaux à venir</p></div></div>
         
         </div> </div> 
         <div id="page-donations" class="page-content hidden">
@@ -2303,629 +2352,736 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const navLinks = document.querySelectorAll('.nav-link, a[data-page]');
-        const pages = document.querySelectorAll('.page-content');
-        let carbonChart, playerGrowthChart, procutProductivityChart;
-
-        // --- Références Menu Mobile ---
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('#mobile-nav-links .nav-link');
-        const burgerIcon = document.getElementById('burger-icon');
-        const closeIcon = document.getElementById('close-icon');
-
-        // --- Références Menu Inférieur ---
-        const bottomMenu = document.getElementById('bottom-menu');
-        const bottomMenuContents = document.querySelectorAll('.bottom-menu-content');
-
-        // --- Références Preloader ---
-        const preloader = document.getElementById('preloader');
-        const body = document.body;
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-                body.classList.remove('body-loading');
-            }, 1500); // Temps de chargement simulé
-        });
-
-        // --- Références Nouveaux Éléments ---
-        const testimonialSlides = document.querySelectorAll('#testimonial-slides-container .testimonial-slide');
-        const testimonialDots = document.querySelectorAll('#testimonial-dots-container .testimonial-dot');
-        const backToTopBtn = document.getElementById('back-to-top-btn');
-        const cookieBanner = document.getElementById('cookie-banner');
-        const cookieAcceptBtn = document.getElementById('cookie-accept');
-        const cookieDeclineBtn = document.getElementById('cookie-decline');
-        const contactForm = document.getElementById('contact-form');
-        const formSuccessMessage = document.getElementById('form-success-message');
-        // --- AJOUT: Références Modale & Dark Mode ---
-        const htmlElement = document.documentElement;
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const openModalBtn = document.getElementById('open-modal-btn');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const videoModal = document.getElementById('video-modal');
-        const modalOverlay = document.getElementById('modal-overlay');
-        const videoIframe = document.getElementById('video-iframe');
-        const originalIframeSrc = videoIframe.src;
-        // --- FIN AJOUT ---
-        let currentSlide = 0;
-        let slideInterval;
-
-
-        // --- Logique Menu Mobile ---
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-            burgerIcon.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-            body.classList.toggle('body-loading'); // Bloque le scroll
-        });
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('open');
-            burgerIcon.classList.remove('hidden');
-            closeIcon.classList.add('hidden');
-            body.classList.remove('body-loading');
-        }
-
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                closeMobileMenu();
-            });
-        });
-
-        // --- Logique Tabs (Onglets) ---
-        const tabs = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const target = tab.dataset.tab;
-                tabs.forEach(t => {
-                    t.classList.remove('active', 'border-purple-500', 'text-purple-600');
-                    t.classList.add('text-gray-500', 'hover:text-purple-600', 'hover:border-purple-300', 'border-transparent');
-                });
-                tab.classList.add('active', 'border-purple-500', 'text-purple-600');
-                tab.classList.remove('text-gray-500', 'hover:text-purple-600', 'hover:border-purple-300', 'border-transparent');
-
-                tabContents.forEach(content => {
-                    content.classList.add('hidden');
-                    if (content.dataset.tabContent === target) {
-                        content.classList.remove('hidden');
-                    }
-                });
-            });
-        });
-
-        // --- Logique Navigation SPA (Single Page Application) ---
-        function showPage(pageId) {
-            pages.forEach(page => page.classList.add('hidden'));
-            const activePage = document.getElementById(`page-${pageId}`);
-
-            // Gérer le menu inférieur
-            let bottomMenuActive = false;
-            bottomMenuContents.forEach(content => {
-                content.classList.remove('active'); // Masque tous les contenus
-                if (content.dataset.page === pageId) {
-                    content.classList.add('active'); // Active le bon
-                    bottomMenuActive = true;
-                }
-            });
-            // Affiche le menu seulement si un contenu correspond
-            if (bottomMenuActive) {
-                bottomMenu.classList.add('visible');
-            } else {
-                bottomMenu.classList.remove('visible');
-            }
-
-            if (activePage) {
-                activePage.classList.remove('hidden');
-                window.scrollTo(0, 0); // Remonte en haut de page
-
-                // Réinitialise les animations au scroll pour la nouvelle page
-                if (typeof observer !== 'undefined') {
-                    document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.unobserve(el)); // Arrête d'observer les anciens éléments
-                    handleScrollAnimations(); // Réapplique l'observation aux nouveaux éléments
-                }
-
-                // Détruire et recréer les graphiques Chart.js si nécessaire
-                destroyAllCharts();
-                if (pageId === 'home') {
-                    createCarbonChart();
-                    startTestimonialSlider();
-                } else {
-                    stopTestimonialSlider();
-                }
-                if (pageId === 'products') {
-                    createPlayerGrowthChart();
-                    createProcutProductivityChart();
-                }
-
-                // **Appel correct pour le scroller des bureaux**
-                if (pageId === 'contact') {
-                    // On attend un peu que la page soit rendue pour les calculs de taille
-                    setTimeout(() => {
-                        initOfficeScroller();
-                    }, 100);
-                }
-
-                // Réinitialise les compteurs
-                if (typeof initCounters === 'function') {
-                    initCounters();
-                }
-            } // Fin du if(activePage)
-
-            // Met à jour l'état actif dans la nav principale
-            document.querySelectorAll('#main-nav .nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.dataset.page === pageId) link.classList.add('active');
-            });
-
-            // Met à jour l'état actif dans la nav mobile
-            mobileNavLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.dataset.page === pageId) link.classList.add('active');
-            });
-        } // Fin de showPage
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', (event) => {
-                event.preventDefault();
-                const pageId = link.dataset.page;
-                const scrollTargetId = link.dataset.scrollTarget;
-
-                if(pageId) {
-                    showPage(pageId); // Change de page
-                }
-                if(scrollTargetId) {
-                    // Scroll vers l'ancre APRES que la page soit visible
-                    requestAnimationFrame(() => { // Assure que le DOM est à jour
-                        scrollToTarget(scrollTargetId);
-                    });
-                }
-            });
-        });
-
-        function scrollToTarget(targetId) {
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const headerOffset = document.querySelector('.main-header').offsetHeight;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerOffset - 20;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        }
-
-        // --- Logique Compteurs ---
-        const counterObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.dataset.animated) {
-                    startCounter(entry.target);
-                    entry.target.dataset.animated = 'true';
-                }
-            });
-        }, { threshold: 0.5 });
-
-        function startCounter(counterElement) {
-            const target = parseInt(counterElement.dataset.counter);
-            if (isNaN(target)) return;
-            const suffix = counterElement.dataset.suffix || '';
-            const duration = 2000;
-            let start = null;
-            const step = (timestamp) => {
-                if (!start) start = timestamp;
-                const progress = Math.min((timestamp - start) / duration, 1);
-                let currentValue = Math.floor(progress * target);
-                counterElement.innerText = currentValue.toLocaleString('fr-FR') + suffix;
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                } else {
-                    counterElement.innerText = target.toLocaleString('fr-FR') + suffix;
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        function initCounters() {
-            document.querySelectorAll('[data-counter]').forEach(counter => {
-                delete counter.dataset.animated;
-                const suffix = counter.dataset.suffix || '';
-                counter.innerText = '0' + suffix;
-                counterObserver.unobserve(counter); // Arrête d'observer au cas où
-                counterObserver.observe(counter); // Ré-observe
-            });
-        }
-        // --- Fin Logique Compteurs ---
-
-
-        // --- Logique Animation au Scroll ---
-        const scrollElements = document.querySelectorAll('.reveal-on-scroll');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    // observer.unobserve(entry.target); // Décommenter pour animer une seule fois
-                } /* else { // Optionnel: réinitialiser si ça sort
-                   entry.target.classList.remove('is-visible');
-                }*/
-            });
-        }, { threshold: 0.1 });
-
-        function handleScrollAnimations() {
-            document.querySelectorAll('.reveal-on-scroll').forEach(el => {
-                el.classList.remove('is-visible');
-                observer.observe(el);
-            });
-        }
-        // --- Fin Logique Animation au Scroll ---
-
-        // --- Logique Scroll Fluide Menu Inférieur ---
-        bottomMenu.addEventListener('click', function(event) {
-            const targetLink = event.target.closest('a[data-scroll-target]');
-            if (targetLink) {
-                event.preventDefault();
-                scrollToTarget(targetLink.dataset.scrollTarget);
-            }
-        });
-
-        // --- Logique Slider Témoignages ---
-        function showTestimonialSlide(index) {
-            if (!testimonialSlides.length || !testimonialDots.length) return;
-            testimonialSlides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (testimonialDots[i]) testimonialDots[i].classList.remove('active'); // Sécurité
-            });
-            if (testimonialSlides[index]) testimonialSlides[index].classList.add('active'); // Sécurité
-            if (testimonialDots[index]) testimonialDots[index].classList.add('active'); // Sécurité
-            currentSlide = index;
-        }
-
-        function nextTestimonialSlide() {
-            if (!testimonialSlides.length) return;
-            let nextSlide = (currentSlide + 1) % testimonialSlides.length;
-            showTestimonialSlide(nextSlide);
-        }
-
-        function startTestimonialSlider() {
-            stopTestimonialSlider();
-            if (testimonialSlides.length > 0) {
-                showTestimonialSlide(0);
-                slideInterval = setInterval(nextTestimonialSlide, 5000);
-            }
-        }
-
-        function stopTestimonialSlider() {
-            clearInterval(slideInterval);
-        }
-
-        testimonialDots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const slideIndex = parseInt(e.target.dataset.slide);
-                if (!isNaN(slideIndex)) { // Sécurité
-                    showTestimonialSlide(slideIndex);
-                    stopTestimonialSlider();
-                    startTestimonialSlider();
-                }
-            });
-        });
-        // --- FIN ---
-
-        // --- Logique Bouton "Retour en Haut" ---
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-
-        backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        // --- FIN ---
-
-        // --- Logique Bannière de Cookies ---
-        function hideCookieBanner() {
-            if (cookieBanner) cookieBanner.classList.remove('visible');
-        }
-
-        function showCookieBanner() {
-            if (cookieBanner) cookieBanner.classList.add('visible');
-        }
-
-        if (localStorage.getItem('cookie_consent')) {
-            hideCookieBanner();
-        } else {
-            setTimeout(showCookieBanner, 3000);
-        }
-
-        if (cookieAcceptBtn) {
-            cookieAcceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookie_consent', 'accepted');
-                hideCookieBanner();
-            });
-        }
-
-        if (cookieDeclineBtn) {
-            cookieDeclineBtn.addEventListener('click', () => {
-                localStorage.setItem('cookie_consent', 'declined');
-                hideCookieBanner();
-            });
-        }
-        // --- FIN ---
-
-        // --- Logique Validation Formulaire ---
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                if (validateForm()) {
-                    formSuccessMessage.style.display = 'block';
-                    contactForm.style.display = 'none';
-                    // Ici, code pour envoyer les données (fetch, etc.)
-                }
-            });
-
-            function validateForm() {
-                let isValid = true;
-                const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
-
-                inputs.forEach(input => {
-                    const parent = input.closest('.form-group');
-                    if (!input.value.trim() || (input.type === 'email' && !validateEmail(input.value))) {
-                        isValid = false;
-                        if(parent) parent.classList.add('invalid'); // Sécurité
-                        input.classList.add('invalid');
-                    } else {
-                        if(parent) parent.classList.remove('invalid'); // Sécurité
-                        input.classList.remove('invalid');
-                    }
-                });
-
-                return isValid;
-            }
-
-            function validateEmail(email) {
-                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(String(email).toLowerCase());
-            }
-        }
-        // --- FIN ---
-
-        // --- **Logique Scroller Bureaux** (CORRIGÉE) ---
-        function initOfficeScroller() {
-            // Utilise 'let' pour pouvoir ré-assigner après le clonage
-            let scroller = document.getElementById('offices-scroller');
-            let leftBtn = document.getElementById('office-scroll-left');
-            let rightBtn = document.getElementById('office-scroll-right');
-
-            // Quitte si les éléments n'existent pas
-            if (!scroller || !leftBtn || !rightBtn) {
-                console.error("Scroller elements not found!");
-                return;
-            }
-
-            // Cette fonction est maintenant définie dans la portée de initOfficeScroller
-            // Elle aura accès aux variables 'leftBtn' et 'rightBtn' mises à jour.
-            function updateArrows() {
-                if (!scroller) return;
-                const scrollLeft = Math.round(scroller.scrollLeft);
-                const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-
-                // Important : 'leftBtn' et 'rightBtn' ici font référence aux variables 'let'
-                // qui ont été mises à jour après le clonage.
-                leftBtn.style.display = scrollLeft > 1 ? 'flex' : 'none';
-                rightBtn.style.display = scrollLeft < maxScroll - 5 ? 'flex' : 'none';
-            }
-
-            function getScrollAmount() {
-                let card = scroller.querySelector('.custom-card');
-                if (!card) return 300; // Valeur par défaut
-
-                let cardWidth = card.offsetWidth;
-                let gapStyle = window.getComputedStyle(scroller).gap;
-                let gap = gapStyle === 'normal' ? 32 : parseInt(gapStyle);
-                if (isNaN(gap)) gap = 32; // Fallback
-
-                // Sur petit écran, défile de la largeur visible
-                if (cardWidth >= scroller.clientWidth - gap) {
-                    return scroller.clientWidth;
-                }
-
-                // Sinon, défile d'une carte + l'espace
-                let scrollAmount = cardWidth + gap;
-                return scrollAmount;
-            }
-
-            // Supprime les anciens listeners en clonant les nœuds
-            rightBtn.replaceWith(rightBtn.cloneNode(true));
-            leftBtn.replaceWith(leftBtn.cloneNode(true));
-            
-            // **LA CORRECTION CLÉ :**
-            // Ré-assigne les variables 'let' pour qu'elles pointent vers les NOUVEAUX boutons
-            leftBtn = document.getElementById('office-scroll-left');
-            rightBtn = document.getElementById('office-scroll-right');
-
-            // Ajoute les listeners aux NOUVEAUX boutons
-            rightBtn.addEventListener('click', () => {
-                scroller.scrollLeft += getScrollAmount();
-            });
-
-            leftBtn.addEventListener('click', () => {
-                scroller.scrollLeft -= getScrollAmount();
-            });
-
-            // Ajoute le listener de scroll au conteneur
-            scroller.addEventListener('scroll', updateArrows, { passive: true });
-
-            // Gère le redimensionnement de la fenêtre
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(updateArrows, 150); 
-            });
-
-            // Met à jour l'état des flèches au chargement
-            setTimeout(updateArrows, 50); // Léger délai
-        }
-        // --- FIN Logique Scroller Bureaux ---
-
-
-        // --- AJOUT: Logique Modale Vidéo ---
-        function openModal() {
-            if (videoIframe && modalOverlay && videoModal && body) { // Vérifie que tout existe
-                videoIframe.src = originalIframeSrc + "?autoplay=1";
-                videoModal.classList.add('visible');
-                modalOverlay.classList.add('visible');
-                body.classList.add('modal-open');
-            }
-        }
-
-        function closeModal() {
-            if (videoIframe && modalOverlay && videoModal && body) { // Vérifie que tout existe
-                videoIframe.src = "";
-                videoModal.classList.remove('visible');
-                modalOverlay.classList.remove('visible');
-                body.classList.remove('modal-open');
-            }
-        }
-
-        if (openModalBtn) openModalBtn.addEventListener('click', (e) => { e.preventDefault(); openModal(); });
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-        if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
-        // --- FIN AJOUT ---
-
-        // --- AJOUT: Logique Dark Mode ---
-        function setTheme(theme) {
-            if (theme === 'dark') {
-                htmlElement.classList.add('dark-mode');
-                moonIcon.classList.remove('hidden');
-                sunIcon.classList.add('hidden');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                htmlElement.classList.remove('dark-mode');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-                localStorage.setItem('theme', 'light');
-            }
-            // Redessiner les graphiques avec les nouvelles couleurs
-            const currentPageElement = document.querySelector('.page-content:not(.hidden)');
-            const currentPage = currentPageElement ? currentPageElement.id.replace('page-', '') : 'home';
-            destroyAllCharts();
-            if (currentPage === 'home') createCarbonChart();
-            if (currentPage === 'products') {
-                createPlayerGrowthChart();
-                createProcutProductivityChart();
-            }
-        }
-
-        if (darkModeToggle) {
-            darkModeToggle.addEventListener('click', () => {
-                const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                setTheme(currentTheme === 'light' ? 'dark' : 'light');
-            });
-        }
-
-        // Initialiser le thème au chargement
-        const savedTheme = localStorage.getItem('theme');
-        const osPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        setTheme(savedTheme || osPreference);
-        // --- FIN AJOUT ---
-
-
-        // --- Fonctions Création Graphiques ---
-        function getThemeColors() {
-            const isDarkMode = htmlElement.classList.contains('dark-mode');
-            return {
-                gridColor: isDarkMode ? 'rgba(55, 65, 81, 0.5)' : 'rgba(229, 231, 235, 0.7)',
-                labelColor: isDarkMode ? '#9CA3AF' : '#4B5563',
-                legendColor: isDarkMode ? '#E5E7EB' : '#111827'
-            };
-        }
-
-        function destroyAllCharts() {
-            if (carbonChart) carbonChart.destroy();
-            if (playerGrowthChart) playerGrowthChart.destroy();
-            if (procutProductivityChart) procutProductivityChart.destroy();
-        }
-
-        function createCarbonChart() {
-            const ctx = document.getElementById('carbonFootprintChart');
-            if (!ctx) return;
-            const themeColors = getThemeColors();
-            carbonChart = new Chart(ctx, {
-                 type: 'doughnut',
-                 data: {
-                     labels: ['Utilisation des produits', 'Fabrication & Logistique', 'Opérations (Data Centers)', 'Fin de vie'],
-                     datasets: [{ data: [67, 23, 8, 2], backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#6B7280'], borderWidth: 0, hoverOffset: 4 }]
-                 },
-                 options: {
-                     responsive: true,
-                     cutout: '70%',
-                     plugins: {
-                         legend: {
-                             position: 'bottom',
-                             labels: { padding: 20, font: { size: 14 }, color: themeColors.legendColor }
-                         }
-                     }
-                 }
-            });
-        }
-
-        function createPlayerGrowthChart() {
-            const ctx = document.getElementById('playerGrowthChart');
-            if (!ctx) return;
-            const themeColors = getThemeColors();
-            playerGrowthChart = new Chart(ctx, {
-                 type: 'bar',
-                 data: {
-                     labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-                     datasets: [{ label: 'Joueurs Actifs (en millions)', data: [1, 5, 12, 25, 40, 60, 75], backgroundColor: '#8B5CF6', borderRadius: 4 }]
-                 },
-                 options: {
-                     responsive: true,
-                     plugins: { legend: { display: false } },
-                     scales: {
-                         y: { beginAtZero: true, grid: { color: themeColors.gridColor }, ticks: { color: themeColors.labelColor } },
-                         x: { grid: { display: false }, ticks: { color: themeColors.labelColor } }
-                     }
-                 }
-            });
-        }
-
-        function createProcutProductivityChart() {
-            const ctx = document.getElementById('procutProductivityChart');
-            if (!ctx) return;
-            const themeColors = getThemeColors();
-            procutProductivityChart = new Chart(ctx, {
-                 type: 'line',
-                 data: {
-                     labels: ['Logiciel Standard', 'Avec ProCut', 'Avec ProCut + IA "Nexus"'],
-                     datasets: [{ label: 'Temps de Production (heures)', data: [40, 15, 8], borderColor: '#3B82F6', backgroundColor: 'rgba(59, 130, 246, 0.1)', fill: true, tension: 0.1, pointBackgroundColor: '#3B82F6', pointRadius: 5 }]
-                 },
-                 options: {
-                     responsive: true,
-                     plugins: { legend: { display: false } },
-                     scales: {
-                         y: { beginAtZero: true, suggestedMax: 45, grid: { color: themeColors.gridColor }, ticks: { color: themeColors.labelColor } },
-                         x: { grid: { display: false }, ticks: { color: themeColors.labelColor } }
-                     }
-                 }
-            });
-        }
-        // --- Fin Fonctions Création Graphiques ---
-
-
-        // --- Initialisation au chargement ---
-        showPage('home'); // Affiche la page d'accueil
-        handleScrollAnimations(); // Démarre l'observation pour les animations au scroll
-
-    }); // Fin de DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link, a[data-page]');
+    const pages = document.querySelectorAll('.page-content');
+    let carbonChart, playerGrowthChart, procutProductivityChart;
+
+    // --- Références Menu Mobile ---
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('#mobile-nav-links .nav-link');
+    const burgerIcon = document.getElementById('burger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    // --- Références Menu Inférieur ---
+    const bottomMenu = document.getElementById('bottom-menu');
+    const bottomMenuContents = document.querySelectorAll('.bottom-menu-content');
+
+    // --- Références Preloader ---
+    const preloader = document.getElementById('preloader');
+    const body = document.body;
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            body.classList.remove('body-loading');
+        }, 1500); // Temps de chargement simulé
+    });
+
+    // --- Références Nouveaux Éléments ---
+    const testimonialSlides = document.querySelectorAll('#testimonial-slides-container .testimonial-slide');
+    const testimonialDots = document.querySelectorAll('#testimonial-dots-container .testimonial-dot');
+    const backToTopBtn = document.getElementById('back-to-top-btn');
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieAcceptBtn = document.getElementById('cookie-accept');
+    const cookieDeclineBtn = document.getElementById('cookie-decline');
+    const contactForm = document.getElementById('contact-form');
+    const formSuccessMessage = document.getElementById('form-success-message');
+    // --- AJOUT: Références Modale & Dark Mode ---
+    const htmlElement = document.documentElement;
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+    const openModalBtn = document.getElementById('open-modal-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const videoModal = document.getElementById('video-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const videoIframe = document.getElementById('video-iframe');
+    const originalIframeSrc = videoIframe.src;
+    // --- FIN AJOUT ---
+    let currentSlide = 0;
+    let slideInterval;
+
+
+    // --- Logique Menu Mobile ---
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+        burgerIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+        body.classList.toggle('body-loading'); // Bloque le scroll
+    });
+
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        burgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        body.classList.remove('body-loading');
+    }
+
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
+
+    // --- Logique Tabs (Onglets) ---
+    const tabs = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            tabs.forEach(t => {
+                t.classList.remove('active', 'border-purple-500', 'text-purple-600');
+                t.classList.add('text-gray-500', 'hover:text-purple-600', 'hover:border-purple-300', 'border-transparent');
+            });
+            tab.classList.add('active', 'border-purple-500', 'text-purple-600');
+            tab.classList.remove('text-gray-500', 'hover:text-purple-600', 'hover:border-purple-300', 'border-transparent');
+
+            tabContents.forEach(content => {
+                content.classList.add('hidden');
+                if (content.dataset.tabContent === target) {
+                    content.classList.remove('hidden');
+                }
+            });
+        });
+    });
+
+    // --- Logique Navigation SPA (Single Page Application) ---
+    function showPage(pageId) {
+        pages.forEach(page => page.classList.add('hidden'));
+        const activePage = document.getElementById(`page-${pageId}`);
+
+        // Gérer le menu inférieur
+        let bottomMenuActive = false;
+        bottomMenuContents.forEach(content => {
+            content.classList.remove('active'); // Masque tous les contenus
+            if (content.dataset.page === pageId) {
+                content.classList.add('active'); // Active le bon
+                bottomMenuActive = true;
+            }
+        });
+        // Affiche le menu seulement si un contenu correspond
+        if (bottomMenuActive) {
+            bottomMenu.classList.add('visible');
+        } else {
+            bottomMenu.classList.remove('visible');
+        }
+
+        if (activePage) {
+            activePage.classList.remove('hidden');
+            window.scrollTo(0, 0); // Remonte en haut de page
+
+            // Réinitialise les animations au scroll pour la nouvelle page
+            if (typeof observer !== 'undefined') {
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.unobserve(el)); // Arrête d'observer les anciens éléments
+                handleScrollAnimations(); // Réapplique l'observation aux nouveaux éléments
+            }
+
+            // Détruire et recréer les graphiques Chart.js si nécessaire
+            destroyAllCharts();
+            if (pageId === 'home') {
+                createCarbonChart();
+                startTestimonialSlider();
+            } else {
+                stopTestimonialSlider();
+            }
+            if (pageId === 'products') {
+                createPlayerGrowthChart();
+                createProcutProductivityChart();
+            }
+
+            // =================================================================
+            // --- MODIFICATION ICI ---
+            // Appel pour les scrollers de bureaux
+            if (pageId === 'contact') {
+                // On attend un peu que la page soit rendue pour les calculs de taille
+                setTimeout(() => {
+                    // Initialise le PREMIER carrousel
+                    setupGenericScroller(
+                        'offices-scroller',
+                        'office-scroll-left',
+                        'office-scroll-right'
+                    );
+
+                    // Initialise le DEUXIÈME carrousel
+                    // Assurez-vous que ces ID existent dans votre HTML !
+                    setupGenericScroller(
+                        'upcoming-offices-scroller',
+                        'upcoming-office-scroll-left',
+                        'upcoming-office-scroll-right'
+                    );
+                }, 100);
+            }
+            // --- FIN DE LA MODIFICATION ---
+            // =================================================================
+
+
+            // Réinitialise les compteurs
+            if (typeof initCounters === 'function') {
+                initCounters();
+            }
+        } // Fin du if(activePage)
+
+        // Met à jour l'état actif dans la nav principale
+        document.querySelectorAll('#main-nav .nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.page === pageId) link.classList.add('active');
+        });
+
+        // Met à jour l'état actif dans la nav mobile
+        mobileNavLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.dataset.page === pageId) link.classList.add('active');
+        });
+    } // Fin de showPage
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const pageId = link.dataset.page;
+            const scrollTargetId = link.dataset.scrollTarget;
+
+            if (pageId) {
+                showPage(pageId); // Change de page
+            }
+            if (scrollTargetId) {
+                // Scroll vers l'ancre APRES que la page soit visible
+                requestAnimationFrame(() => { // Assure que le DOM est à jour
+                    scrollToTarget(scrollTargetId);
+                });
+            }
+        });
+    });
+
+    function scrollToTarget(targetId) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            const headerOffset = document.querySelector('.main-header').offsetHeight;
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset - 20;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    // --- Logique Compteurs ---
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.dataset.animated) {
+                startCounter(entry.target);
+                entry.target.dataset.animated = 'true';
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    function startCounter(counterElement) {
+        const target = parseInt(counterElement.dataset.counter);
+        if (isNaN(target)) return;
+        const suffix = counterElement.dataset.suffix || '';
+        const duration = 2000;
+        let start = null;
+        const step = (timestamp) => {
+            if (!start) start = timestamp;
+            const progress = Math.min((timestamp - start) / duration, 1);
+            let currentValue = Math.floor(progress * target);
+            counterElement.innerText = currentValue.toLocaleString('fr-FR') + suffix;
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                counterElement.innerText = target.toLocaleString('fr-FR') + suffix;
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    function initCounters() {
+        document.querySelectorAll('[data-counter]').forEach(counter => {
+            delete counter.dataset.animated;
+            const suffix = counter.dataset.suffix || '';
+            counter.innerText = '0' + suffix;
+            counterObserver.unobserve(counter); // Arrête d'observer au cas où
+            counterObserver.observe(counter); // Ré-observe
+        });
+    }
+    // --- Fin Logique Compteurs ---
+
+
+    // --- Logique Animation au Scroll ---
+    const scrollElements = document.querySelectorAll('.reveal-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // observer.unobserve(entry.target); // Décommenter pour animer une seule fois
+            } /* else { // Optionnel: réinitialiser si ça sort
+                entry.target.classList.remove('is-visible');
+            }*/
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    function handleScrollAnimations() {
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            el.classList.remove('is-visible');
+            observer.observe(el);
+        });
+    }
+    // --- Fin Logique Animation au Scroll ---
+
+    // --- Logique Scroll Fluide Menu Inférieur ---
+    bottomMenu.addEventListener('click', function(event) {
+        const targetLink = event.target.closest('a[data-scroll-target]');
+        if (targetLink) {
+            event.preventDefault();
+            scrollToTarget(targetLink.dataset.scrollTarget);
+        }
+    });
+
+    // --- Logique Slider Témoignages ---
+    function showTestimonialSlide(index) {
+        if (!testimonialSlides.length || !testimonialDots.length) return;
+        testimonialSlides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (testimonialDots[i]) testimonialDots[i].classList.remove('active'); // Sécurité
+        });
+        if (testimonialSlides[index]) testimonialSlides[index].classList.add('active'); // Sécurité
+        if (testimonialDots[index]) testimonialDots[index].classList.add('active'); // Sécurité
+        currentSlide = index;
+    }
+
+    function nextTestimonialSlide() {
+        if (!testimonialSlides.length) return;
+        let nextSlide = (currentSlide + 1) % testimonialSlides.length;
+        showTestimonialSlide(nextSlide);
+    }
+
+    function startTestimonialSlider() {
+        stopTestimonialSlider();
+        if (testimonialSlides.length > 0) {
+            showTestimonialSlide(0);
+            slideInterval = setInterval(nextTestimonialSlide, 5000);
+        }
+    }
+
+    function stopTestimonialSlider() {
+        clearInterval(slideInterval);
+    }
+
+    testimonialDots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            const slideIndex = parseInt(e.target.dataset.slide);
+            if (!isNaN(slideIndex)) { // Sécurité
+                showTestimonialSlide(slideIndex);
+                stopTestimonialSlider();
+                startTestimonialSlider();
+            }
+        });
+    });
+    // --- FIN ---
+
+    // --- Logique Bouton "Retour en Haut" ---
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    // --- FIN ---
+
+    // --- Logique Bannière de Cookies ---
+    function hideCookieBanner() {
+        if (cookieBanner) cookieBanner.classList.remove('visible');
+    }
+
+    function showCookieBanner() {
+        if (cookieBanner) cookieBanner.classList.add('visible');
+    }
+
+    if (localStorage.getItem('cookie_consent')) {
+        hideCookieBanner();
+    } else {
+        setTimeout(showCookieBanner, 3000);
+    }
+
+    if (cookieAcceptBtn) {
+        cookieAcceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'accepted');
+            hideCookieBanner();
+        });
+    }
+
+    if (cookieDeclineBtn) {
+        cookieDeclineBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'declined');
+            hideCookieBanner();
+        });
+    }
+    // --- FIN ---
+
+    // --- Logique Validation Formulaire ---
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (validateForm()) {
+                formSuccessMessage.style.display = 'block';
+                contactForm.style.display = 'none';
+                // Ici, code pour envoyer les données (fetch, etc.)
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+            const inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+
+            inputs.forEach(input => {
+                const parent = input.closest('.form-group');
+                if (!input.value.trim() || (input.type === 'email' && !validateEmail(input.value))) {
+                    isValid = false;
+                    if (parent) parent.classList.add('invalid'); // Sécurité
+                    input.classList.add('invalid');
+                } else {
+                    if (parent) parent.classList.remove('invalid'); // Sécurité
+                    input.classList.remove('invalid');
+                }
+            });
+
+            return isValid;
+        }
+
+        function validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+    }
+    // --- FIN ---
+
+
+    // =================================================================
+    // --- MODIFICATION ICI ---
+    // Remplacement de votre ancienne fonction `initOfficeScroller`
+    // par une fonction générique plus robuste.
+    
+    // On utilise un Map pour garder en mémoire les fonctions de listener
+    // afin de pouvoir les supprimer proprement (mieux que cloneNode).
+    const scrollerListeners = new Map();
+
+    /**
+     * Initialise un carrousel horizontal générique.
+     * @param {string} scrollerId - ID de l'élément qui défile (ex: 'offices-scroller')
+     * @param {string} leftBtnId - ID du bouton gauche (ex: 'office-scroll-left')
+     * @param {string} rightBtnId - ID du bouton droit (ex: 'office-scroll-right')
+     */
+    function setupGenericScroller(scrollerId, leftBtnId, rightBtnId) {
+        const scroller = document.getElementById(scrollerId);
+        const leftBtn = document.getElementById(leftBtnId);
+        const rightBtn = document.getElementById(rightBtnId);
+
+        // Quitte si les éléments n'existent pas sur cette page
+        if (!scroller || !leftBtn || !rightBtn) {
+            console.warn(`Éléments du scroller non trouvés pour: ${scrollerId}. Initialisation annulée.`);
+            return;
+        }
+
+        // --- Définition des fonctions de listeners ---
+        // On les définit ici pour avoir une référence et pouvoir les supprimer.
+
+        const updateArrows = () => {
+            const scrollLeft = Math.round(scroller.scrollLeft);
+            const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+            
+            // On ajoute une petite marge de 5px pour gérer les imprécisions de calcul
+            leftBtn.style.display = scrollLeft > 5 ? 'flex' : 'none';
+            rightBtn.style.display = scrollLeft < maxScroll - 5 ? 'flex' : 'none';
+        };
+
+        const getScrollAmount = () => {
+            let card = scroller.querySelector('.custom-card');
+            if (!card) return 300; // Valeur par défaut
+
+            let cardWidth = card.offsetWidth;
+            let gapStyle = window.getComputedStyle(scroller).gap;
+            let gap = gapStyle === 'normal' ? 32 : parseInt(gapStyle); // 32px est votre "gap-8"
+            if (isNaN(gap)) gap = 32; // Fallback
+
+            // Sur petit écran, défile de la largeur visible
+            if (cardWidth >= scroller.clientWidth - (gap * 2)) {
+                 return scroller.clientWidth * 0.85; // Défile de 85% de la vue
+            }
+
+            // Sinon, défile d'une carte + l'espace
+            return cardWidth + gap;
+        };
+
+        const onRightClick = () => {
+            scroller.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        };
+
+        const onLeftClick = () => {
+            scroller.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        };
+
+        let resizeTimeout;
+        const onResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(updateArrows, 150);
+        };
+
+        // --- Suppression des anciens listeners (s'ils existent) ---
+        // C'est nécessaire car la fonction est appelée à chaque changement de page.
+        if (scrollerListeners.has(scrollerId)) {
+            const listeners = scrollerListeners.get(scrollerId);
+            leftBtn.removeEventListener('click', listeners.onLeftClick);
+            rightBtn.removeEventListener('click', listeners.onRightClick);
+            scroller.removeEventListener('scroll', listeners.updateArrows);
+            window.removeEventListener('resize', listeners.onResize);
+        }
+
+        // --- Ajout des nouveaux listeners ---
+        leftBtn.addEventListener('click', onLeftClick);
+        rightBtn.addEventListener('click', onRightClick);
+        scroller.addEventListener('scroll', updateArrows, { passive: true });
+        window.addEventListener('resize', onResize);
+
+        // --- Sauvegarde des références des listeners ---
+        scrollerListeners.set(scrollerId, { onLeftClick, onRightClick, updateArrows, onResize });
+
+        // Met à jour l'état des flèches au chargement
+        setTimeout(updateArrows, 50); // Léger délai pour le rendu
+    }
+    // --- FIN DE LA MODIFICATION ---
+    // =================================================================
+
+
+    // --- AJOUT: Logique Modale Vidéo ---
+    function openModal() {
+        if (videoIframe && modalOverlay && videoModal && body) { // Vérifie que tout existe
+            videoIframe.src = originalIframeSrc + "?autoplay=1";
+            videoModal.classList.add('visible');
+            modalOverlay.classList.add('visible');
+            body.classList.add('modal-open');
+        }
+    }
+
+    function closeModal() {
+        if (videoIframe && modalOverlay && videoModal && body) { // Vérifie que tout existe
+            videoIframe.src = "";
+            videoModal.classList.remove('visible');
+            modalOverlay.classList.remove('visible');
+            body.classList.remove('modal-open');
+        }
+    }
+
+    if (openModalBtn) openModalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+    // --- FIN AJOUT ---
+
+    // --- AJOUT: Logique Dark Mode ---
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            htmlElement.classList.add('dark-mode');
+            moonIcon.classList.remove('hidden');
+            sunIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            htmlElement.classList.remove('dark-mode');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+            localStorage.setItem('theme', 'light');
+        }
+        // Redessiner les graphiques avec les nouvelles couleurs
+        const currentPageElement = document.querySelector('.page-content:not(.hidden)');
+        const currentPage = currentPageElement ? currentPageElement.id.replace('page-', '') : 'home';
+        destroyAllCharts();
+        if (currentPage === 'home') createCarbonChart();
+        if (currentPage === 'products') {
+            createPlayerGrowthChart();
+            createProcutProductivityChart();
+        }
+    }
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        });
+    }
+
+    // Initialiser le thème au chargement
+    const savedTheme = localStorage.getItem('theme');
+    const osPreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setTheme(savedTheme || osPreference);
+    // --- FIN AJOUT ---
+
+
+    // --- Fonctions Création Graphiques ---
+    function getThemeColors() {
+        const isDarkMode = htmlElement.classList.contains('dark-mode');
+        return {
+            gridColor: isDarkMode ? 'rgba(55, 65, 81, 0.5)' : 'rgba(229, 231, 235, 0.7)',
+            labelColor: isDarkMode ? '#9CA3AF' : '#4B5563',
+            legendColor: isDarkMode ? '#E5E7EB' : '#111827'
+        };
+    }
+
+    function destroyAllCharts() {
+        if (carbonChart) carbonChart.destroy();
+        if (playerGrowthChart) playerGrowthChart.destroy();
+        if (procutProductivityChart) procutProductivityChart.destroy();
+    }
+
+    function createCarbonChart() {
+        const ctx = document.getElementById('carbonFootprintChart');
+        if (!ctx) return;
+        const themeColors = getThemeColors();
+        carbonChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Utilisation des produits', 'Fabrication & Logistique', 'Opérations (Data Centers)', 'Fin de vie'],
+                datasets: [{
+                    data: [67, 23, 8, 2],
+                    backgroundColor: ['#10B981', '#F59E0B', '#3B82F6', '#6B7280'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: {
+                                size: 14
+                            },
+                            color: themeColors.legendColor
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function createPlayerGrowthChart() {
+        const ctx = document.getElementById('playerGrowthChart');
+        if (!ctx) return;
+        const themeColors = getThemeColors();
+        playerGrowthChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: 'Joueurs Actifs (en millions)',
+                    data: [1, 5, 12, 25, 40, 60, 75],
+                    backgroundColor: '#8B5CF6',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: themeColors.gridColor
+                        },
+                        ticks: {
+                            color: themeColors.labelColor
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: themeColors.labelColor
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function createProcutProductivityChart() {
+        const ctx = document.getElementById('procutProductivityChart');
+        if (!ctx) return;
+        const themeColors = getThemeColors();
+        procutProductivityChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Logiciel Standard', 'Avec ProCut', 'Avec ProCut + IA "Nexus"'],
+                datasets: [{
+                    label: 'Temps de Production (heures)',
+                    data: [40, 15, 8],
+                    borderColor: '#3B82F6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.1,
+                    pointBackgroundColor: '#3B82F6',
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 45,
+                        grid: {
+                            color: themeColors.gridColor
+                        },
+                        ticks: {
+                            color: themeColors.labelColor
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: themeColors.labelColor
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+
+    // --- Initialisation au chargement ---
+    showPage('home'); // Affiche la page d'accueil
+    handleScrollAnimations(); // Démarre l'observation pour les animations au scroll
+
+}); // Fin de DOMContentLoaded
 </script>
